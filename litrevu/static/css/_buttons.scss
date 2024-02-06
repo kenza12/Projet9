@@ -1,0 +1,30 @@
+@import 'variables';
+
+// Styles de base pour tous les boutons
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+    background-color: $beige-color;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+  
+    &:hover {
+      background-color: darken($beige-color, 10%); // Assombrir au survol
+    }
+}
+
+// Styles spécifiques pour le conteneur des boutons d'activité
+.activity-buttons {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+// Styles spécifiques pour le bouton de réponse au ticket
+.ticket-response a.submit-button {
+    margin-top: 10px;
+}

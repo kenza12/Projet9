@@ -1,0 +1,203 @@
+@charset "UTF-8";
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("../images/background_2x.png");
+  background-size: cover;
+}
+
+header {
+  background-image: url("../images/header_2x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+header a {
+  color: #A0522D;
+  font-weight: bold;
+  font-size: 21px;
+  text-decoration: none;
+  margin: 0 10px;
+}
+header a:hover {
+  text-decoration: underline;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+  max-width: 1500px;
+}
+.auth-container .login-container, .auth-container .signup-container {
+  background-color: rgba(255, 255, 255, 0.801);
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+}
+.auth-container .login-container {
+  margin-right: 40px;
+}
+.auth-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+}
+.auth-container p {
+  color: rgba(82, 9, 9, 0.479);
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-container form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.auth-container form .form-group label {
+  margin-bottom: 5px;
+}
+.auth-container form .form-group input[type=text], .auth-container form .form-group input[type=password], .auth-container form .form-group input[type=email], .auth-container form .form-group select, .auth-container form .form-group input[type=file] {
+  border: 2px solid #bd7c5d;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 15px;
+  width: 50%;
+}
+
+.errorlist, .error-message { /* Cible les erreurs de formulaire générées par Django */
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.feed-container, .post {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+}
+.feed-container.feed-container, .post.feed-container {
+  max-width: 850px;
+  margin: 50px auto 20px;
+}
+.feed-container.post, .post.post {
+  background-color: rgba(255, 255, 255, 0.801);
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+.feed-container.post .post-header, .post.post .post-header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+}
+.feed-container.post .post-header .post-time, .post.post .post-header .post-time {
+  font-size: 0.8em;
+  color: #666;
+}
+.feed-container.post h3, .post.post h3 {
+  color: rgba(59, 16, 16, 0.931);
+}
+.feed-container.post .ticket-response, .post.post .ticket-response {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.combined-post .ticket-header, .ticket-layout .ticket-header {
+  text-align: left;
+}
+.combined-post .ticket-content, .ticket-layout .ticket-content {
+  display: flex;
+  align-items: center;
+}
+.combined-post .ticket-content .ticket-image, .ticket-layout .ticket-content .ticket-image {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+.combined-post .ticket-content .ticket-image img, .ticket-layout .ticket-content .ticket-image img {
+  max-width: 250px;
+  max-height: 250px;
+  margin: 20px auto;
+  margin-left: 10px;
+  transform: rotate(-3deg);
+}
+.combined-post .ticket-content .ticket-text, .ticket-layout .ticket-content .ticket-text {
+  flex: 1;
+  text-align: left;
+  margin-left: 40px;
+}
+.combined-post hr, .ticket-layout hr {
+  border-top: 1px solid rgba(189, 123, 93, 0.6549019608);
+  margin: 20px 0;
+}
+
+.rating {
+  display: inline-block;
+  color: gold;
+  font-size: 1.5em;
+}
+
+/*# sourceMappingURL=main.css.map */

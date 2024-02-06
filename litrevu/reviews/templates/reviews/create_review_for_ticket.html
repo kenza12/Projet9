@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Répondre à un Ticket</h2>
+
+{% if ticket %}
+    <p>Vous êtes en train de poster en réponse au ticket : <strong>{{ ticket.title }}</strong></p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Envoyer</button>
+</form>
+
+<a href="{% url 'feed' %}">Retour au flux d'activité</a>
+{% endblock %}

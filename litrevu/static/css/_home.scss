@@ -1,0 +1,104 @@
+@import 'variables';
+@import 'buttons';
+
+// Styles globaux
+body {
+    font-family: $font-family;
+    background-image: $background;
+    background-size: cover;
+}
+
+
+// Styles pour l'en-tête
+header {
+    background-image: $header-background;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    a {
+        color: $link-color;
+        font-weight: bold;
+        font-size: $font-size;
+        text-decoration: none;
+        margin: 0 10px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Conteneur pour les formulaires de connexion et d'inscription
+.auth-container {
+    display: flex;
+    justify-content: center; // Centrer les conteneurs
+    margin: 50px auto;
+    max-width: 1500px;
+
+    // Styles communs pour les conteneurs de connexion et d'inscription
+    .login-container, .signup-container {
+        background-color: $container-bg-color; // Blanc semi-transparent
+        padding: 20px;
+        border-radius: 5px;
+        width: 500px; // Largeur du conteneur
+    }
+
+    .login-container {
+        margin-right: 40px; // Marge à droite pour séparer les conteneurs
+    }
+
+    h2 {
+        color : $brown-color-title;
+        text-align: center;
+    }
+
+    p {
+        color : $brown-color-p;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold; // Mettre en gras
+    }
+
+    // Styles pour les formulaires
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        // Groupe de formulaire
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center; // Centrer les champs
+            width: 100%;
+
+            label {
+                margin-bottom: 5px; // Espace entre le label et le champ
+            }
+
+            // Styles pour les champs de saisie
+            input[type="text"], input[type="password"], input[type="email"], select, input[type="file"] {
+                border: 2px solid $beige-color; // Épaissir les bordures
+                border-radius: 3px;
+                padding: 5px;
+                margin-bottom: 15px;
+                width: 50%; // Largeur des champs
+            }
+        }
+
+    }
+}
+
+// Style pour les messages d'erreur
+.errorlist, .error-message { /* Cible les erreurs de formulaire générées par Django */
+    color: $red-color-error;
+    font-weight: bold;
+    margin: 10px 0;
+}
