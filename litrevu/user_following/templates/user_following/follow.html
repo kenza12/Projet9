@@ -2,6 +2,15 @@
 
 {% block content %}
 <h2>Suivre un Utilisateur</h2>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -17,6 +26,11 @@
             {% csrf_token %}
             <button type="submit">Désabonner</button>
         </form>
+        <!-- Bouton pour bloquer un utilisateur -->
+        <form action="{% url 'block_user' follow.followed_user.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Bloquer</button>
+        </form>
     </li>
     {% endfor %}
 </ul>
@@ -24,7 +38,30 @@
 <h3>Vos Abonnés</h3>
 <ul>
     {% for follower in followers %}
-    <li>{{ follower.user.username }}</li>
+    <li>
+        {{ follower.user.username }}
+        <!-- Bouton pour bloquer un abonné -->
+        <form action="{% url 'block_user' follower.user.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Bloquer</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Vos Utilisateurs Bloqués</h3>
+<ul>
+    {% for user in blocked_users %}
+    <li>
+        {{ user.username }}
+        <!-- Afficher le bouton "Débloquer" seulement si l'utilisateur actuel a bloqué cet utilisateur -->
+        {% if user.id in user_blocked_ids %}
+            <form action="{% url 'unblock_user' user.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Débloquer</button>
+            </form>
+        {% endif %}
+    </li>
     {% endfor %}
 </ul>
 {% endblock content %}

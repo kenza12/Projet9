@@ -4,7 +4,7 @@ from itertools import chain
 from django.db.models import CharField, Value
 from ticket.models import Ticket
 from reviews.models import Review
-from user_following.models import UserFollows
+from user_following.models import UserFollows, UserBlocks
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 
@@ -55,10 +55,26 @@ class FeedView(LoginRequiredMixin, View):
         Returns:
             list: A combined list of reviews and tickets sorted by creation time.
         """
-        reviews = self.get_users_viewable_reviews(user)
-        tickets = self.get_users_viewable_tickets(user)
+        # Obtenez les IDs des utilisateurs bloqués et des bloqueurs
+        blocked_users_ids = UserBlocks.objects.filter(
+            user=user
+        ).values_list('blocked_user', flat=True)
+        blocking_users_ids = UserBlocks.objects.filter(
+            blocked_user=user
+        ).values_list('user', flat=True)
 
-        # Combine and sort the two types of posts
+        # Obtenez les IDs des utilisateurs suivis, en excluant les utilisateurs bloqués/bloqueurs
+        followed_users = UserFollows.objects.filter(user=user).exclude(
+            followed_user__in=blocked_users_ids
+        ).exclude(
+            followed_user__in=blocking_users_ids
+        ).values_list('followed_user', flat=True)
+
+        # Filtrez les reviews et tickets pour exclure ceux des utilisateurs bloqués et bloqueurs
+        reviews = self.get_users_viewable_reviews(user, followed_users, blocked_users_ids, blocking_users_ids)
+        tickets = self.get_users_viewable_tickets(user, followed_users, blocked_users_ids, blocking_users_ids)
+
+        # Combine et trie les deux types de posts
         combined_posts = sorted(
             chain(reviews, tickets),
             key=lambda post: post.time_created,
@@ -73,38 +89,42 @@ class FeedView(LoginRequiredMixin, View):
         print("Combined posts: ", combined_posts)
         return combined_posts
 
-    def get_users_viewable_reviews(self, user: 'CustomUser'):
-        """
-        Retrieve reviews from the user, users they follow, and reviews responding to the user's tickets.
+    def get_users_viewable_reviews(self, user, followed_users, blocked_users_ids, blocking_users_ids):
+        # Combine les IDs des utilisateurs bloqués et bloqueurs
+        excluded_users_ids = set(blocked_users_ids).union(set(blocking_users_ids))
 
-        Args:
-            user (CustomUser): The user whose reviews and the reviews of followed users are to be retrieved.
+        # Filter reviews from followed users and the user, excluding blocked/blocking users
+        reviews = Review.objects.filter(
+            user__in=followed_users
+        ).exclude(
+            user__in=excluded_users_ids
+        )
 
-        Returns:
-            QuerySet: A Django QuerySet of reviews.
-        """
-        followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
-        reviews_from_followed_users = Review.objects.filter(user__in=followed_users)
-        user_reviews = Review.objects.filter(user=user)
+        # Inclure les propres reviews de l'utilisateur, en excluant celles liées aux tickets des utilisateurs bloqués/bloqueurs
+        user_reviews = Review.objects.filter(
+            user=user
+        ).exclude(
+            ticket__user__in=excluded_users_ids
+        )
 
-        # Get reviews for tickets created by the user, regardless of the reviewer being followed or not
-        reviews_for_user_tickets = Review.objects.filter(ticket__user=user)
-
-        # Combine all QuerySets
-        combined_reviews = reviews_from_followed_users | user_reviews | reviews_for_user_tickets
+        # Combine user's own reviews and reviews from followed users
+        combined_reviews = reviews | user_reviews
 
         return combined_reviews.annotate(content_type=Value('REVIEW', CharField()))
 
-    def get_users_viewable_tickets(self, user: 'CustomUser'):
-        """
-        Retrieve tickets from the user and users they follow.
 
-        Args:
-            user (CustomUser): The user whose tickets and the tickets of followed users are to be retrieved.
+    def get_users_viewable_tickets(self, user, followed_users, blocked_users_ids, blocking_users_ids):
+        # Combine les IDs des utilisateurs bloqués et bloqueurs
+        excluded_users_ids = set(blocked_users_ids).union(set(blocking_users_ids))
 
-        Returns:
-            QuerySet: A Django QuerySet of tickets.
-        """
-        followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
-        tickets = Ticket.objects.filter(user__in=followed_users) | Ticket.objects.filter(user=user)
+        # Filter tickets from followed users and the user, excluding blocked/blocking users
+        tickets = Ticket.objects.filter(
+            user__in=set(followed_users).union({user.id})
+        ).exclude(
+            user__in=excluded_users_ids
+        )
+
         return tickets.annotate(content_type=Value('TICKET', CharField()))
+
+
+

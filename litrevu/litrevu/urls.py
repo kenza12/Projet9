@@ -26,6 +26,8 @@ urlpatterns = [
     path('tickets/<int:pk>/delete/', ticket.views.DeleteTicketView.as_view(), name='delete_ticket'),
     path('follow/', user_following.views.FollowUserView.as_view(), name='follow_user'),
     path('unfollow/<int:user_id>/', user_following.views.UnfollowUserView.as_view(), name='unfollow'),
+    path('block-user/<int:user_id>/', user_following.views.BlockUserView.as_view(), name='block_user'),
+    path('unblock-user/<int:user_id>/', user_following.views.UnblockUserView.as_view(), name='unblock_user'),
 ]
 
 if settings.DEBUG:
