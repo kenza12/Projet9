@@ -1,9 +1,42 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Créer un Ticket</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enregistrer</button>
-</form>
+    <!-- Container principal pour la page de création de ticket -->
+    <div class="ticket-container">
+        <!-- Fond blanc derrière l'image -->
+        <div class="form-background"></div>
+        <!-- Titre de la page -->
+        <h2>Créer un Ticket</h2>
+
+        <!-- Formulaire de création de ticket -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} <!-- Token CSRF pour la sécurité -->
+
+            <!-- Génère les champs du formulaire -->
+            <div class="form-group">
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.name == 'description' %}
+                        <div class="description-field">
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
+            <!-- Conteneur pour le bouton Enregistrer aligné à droite -->
+            <div class="submit-button-container">
+                <button type="submit">Enregistrer</button>
+            </div>
+        </form>
+        </div>
+    </div>
 {% endblock content %}

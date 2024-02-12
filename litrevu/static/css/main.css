@@ -60,7 +60,7 @@ header a:hover {
   max-width: 1500px;
 }
 .auth-container .login-container, .auth-container .signup-container {
-  background-color: rgba(255, 255, 255, 0.801);
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 5px;
   width: 500px;
@@ -106,6 +106,13 @@ header a:hover {
   margin: 10px 0;
 }
 
+.user-info {
+  font-size: smaller;
+  font-style: italic;
+  font-weight: bold;
+  color: #A0522D;
+}
+
 .activity-buttons a, .ticket-response a.submit-button, .submit-button {
   background-color: #bd7c5d;
   color: white;
@@ -142,20 +149,21 @@ header a:hover {
   margin: 50px auto 20px;
 }
 .feed-container.post, .post.post {
-  background-color: rgba(255, 255, 255, 0.801);
+  background-color: #f9f9f9;
   border: 2px solid rgba(189, 123, 93, 0.6549019608);
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
 }
 .feed-container.post .post-header, .post.post .post-header {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   text-align: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 0.9em;
+  color: #666;
 }
 .feed-container.post .post-header .post-time, .post.post .post-header .post-time {
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #666;
 }
 .feed-container.post h3, .post.post h3 {
@@ -198,6 +206,356 @@ header a:hover {
   display: inline-block;
   color: gold;
   font-size: 1.5em;
+}
+
+.user-following-container {
+  max-width: 700px;
+  margin: 50px auto 0; /* 50px en haut, auto sur les côtés, 0 en bas */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+}
+.user-following-container h2, .user-following-container h3 {
+  color: #333;
+}
+.user-following-container .messages {
+  margin-bottom: 20px;
+}
+.user-following-container .messages li {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.user-following-container .follow-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.user-following-container .follow-form input[type=text] {
+  flex-grow: 0;
+  padding: 10px;
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 4px;
+  margin-right: 20px;
+  width: 250px;
+}
+.user-following-container .follow-form .btn-follow {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.user-following-container .follow-form .btn-follow:hover {
+  opacity: 0.8;
+}
+.user-following-container .btn-unfollow, .user-following-container .btn-block, .user-following-container .btn-unblock {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.user-following-container .btn-unfollow:hover, .user-following-container .btn-block:hover, .user-following-container .btn-unblock:hover {
+  opacity: 0.8;
+}
+.user-following-container .btn-follow {
+  background-color: rgba(189, 123, 93, 0.7294117647);
+  color: white;
+}
+.user-following-container .btn-unfollow {
+  background-color: rgba(159, 78, 78, 0.667);
+  color: white;
+}
+.user-following-container .btn-block {
+  background-color: rgba(195, 18, 18, 0.601);
+  color: white;
+}
+.user-following-container .btn-unblock {
+  background-color: rgba(82, 118, 83, 0.6941176471);
+  color: white;
+}
+.user-following-container .user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.user-following-container .user-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.user-following-container .user-item img, .user-following-container .user-item span {
+  margin-right: 10px;
+}
+.user-following-container .user-item .user-info {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.user-following-container .user-item .action-form {
+  margin-left: auto;
+}
+.user-following-container .followed-users,
+.user-following-container .followers,
+.user-following-container .blocked-users {
+  margin-bottom: 50px; /* Ajoute de l'espace en bas de chaque section */
+}
+.user-following-container .custom-hr {
+  border-color: rgba(189, 123, 93, 0.7294117647); /* Couleur marron */
+  width: 100%; /* Longueur personnalisée */
+  margin: 50px auto; /* Marge autour de la ligne */
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  max-width: 900px;
+}
+.ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 30px;
+}
+.ticket-container form {
+  position: relative;
+  padding: 50px;
+  border-radius: 100px;
+  width: 55%;
+  background-color: white;
+  box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
+}
+.ticket-container form::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 7px;
+  background-image: url("../images/biblio.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 40px;
+  z-index: 0;
+}
+.ticket-container form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border-radius: 50px;
+  z-index: -1;
+}
+.ticket-container form .form-group, .ticket-container form .submit-button-container {
+  position: relative;
+  z-index: 1;
+}
+.ticket-container form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ticket-container form .form-group label {
+  margin-bottom: 10px;
+  color: rgba(82, 9, 9, 0.479);
+  font-weight: bold;
+  display: block;
+}
+.ticket-container form .form-group input[type=text],
+.ticket-container form .form-group input[type=password],
+.ticket-container form .form-group input[type=email],
+.ticket-container form .form-group select,
+.ticket-container form .form-group input[type=file],
+.ticket-container form .form-group textarea {
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ticket-container form .form-group textarea {
+  min-height: 300px;
+  width: 163%;
+}
+.ticket-container form .form-group .description-field {
+  margin-bottom: 5px;
+}
+.ticket-container form .submit-button-container {
+  text-align: right;
+}
+.ticket-container form button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.ticket-container form button:hover {
+  background-color: #a46243;
+}
+.ticket-container .errorlist, .ticket-container .error-message {
+  color: red;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.response-to-ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto;
+  max-width: 900px;
+  border-radius: 15px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+  background-image: url("../images/biblio.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 45px;
+}
+.response-to-ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+.response-to-ticket-container .ticket-details {
+  background-color: rgba(255, 255, 255, 0.508);
+  border: 1px solid rgba(189, 123, 93, 0.6549019608);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 90%;
+  display: flex;
+  flex-direction: column; /* Organise les éléments en colonne */
+  align-items: flex-start; /* Alignez les éléments à gauche */
+}
+.response-to-ticket-container .ticket-details .ticket-header {
+  position: relative;
+  width: 100%;
+}
+.response-to-ticket-container .ticket-details .ticket-header p {
+  color: brown;
+  font-weight: bold;
+}
+.response-to-ticket-container .ticket-details .ticket-header .ticket-date-time {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.8em;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description {
+  display: flex;
+  flex-direction: row; /* Organise l'image et la description côte à côte */
+  align-items: flex-start;
+  width: 100%;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-image {
+  flex-basis: 300px; /* Largeur fixe pour l'image */
+  transform: rotate(-3deg);
+  margin-right: 20px; /* Espace entre l'image et la description */
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-image img {
+  max-width: 70%;
+  height: auto;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-description {
+  flex-grow: 1; /* Permet à la description de prendre l'espace restant */
+}
+.response-to-ticket-container .hr-container {
+  width: 80%;
+  margin: 20px auto;
+}
+.response-to-ticket-container .hr-container hr {
+  height: 2px;
+  background-color: #bd7c5d;
+}
+.response-to-ticket-container .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 160%;
+  margin-left: -30%;
+}
+.response-to-ticket-container .form-group label {
+  color: brown;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.response-to-ticket-container .form-group .note-field, .response-to-ticket-container .form-group .title-field, .response-to-ticket-container .form-group .comment-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.response-to-ticket-container .form-group .note-field select, .response-to-ticket-container .form-group .note-field input, .response-to-ticket-container .form-group .note-field textarea, .response-to-ticket-container .form-group .title-field select, .response-to-ticket-container .form-group .title-field input, .response-to-ticket-container .form-group .title-field textarea, .response-to-ticket-container .form-group .comment-field select, .response-to-ticket-container .form-group .comment-field input, .response-to-ticket-container .form-group .comment-field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  margin: auto;
+}
+.response-to-ticket-container .form-group .comment-field .comment-textarea-container textarea {
+  min-height: 400px;
+}
+.response-to-ticket-container .submit-button-container {
+  text-align: right;
+  width: 140%;
+}
+.response-to-ticket-container .submit-button-container .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+.response-to-ticket-container .submit-button-container .submit-button:hover {
+  background-color: #a46243;
 }
 
 /*# sourceMappingURL=main.css.map */

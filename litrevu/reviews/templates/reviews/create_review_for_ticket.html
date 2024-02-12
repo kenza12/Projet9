@@ -1,17 +1,77 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Répondre à un Ticket</h2>
+<div class="response-to-ticket-container">
+    <h2>Répondre à un Ticket</h2>
 
-{% if ticket %}
-    <p>Vous êtes en train de poster en réponse au ticket : <strong>{{ ticket.title }}</strong></p>
-{% endif %}
+    {% if ticket %}
+        <h3>Vous êtes en train de poster en réponse au ticket : {{ ticket.title }}</h3>
+        <div class="ticket-details">
+            <div class="ticket-header">
+                <p>Auteur : {{ ticket.user.username }}</p>
+                <span class="ticket-date-time">{{ ticket.time_created|date:"d M Y H:i" }}</span>
+            </div>
+            <div class="ticket-image-and-description">
+                {% if ticket.image %}
+                    <div class="ticket-image">
+                        <img src="{{ ticket.image.url }}" alt="Image du ticket">
+                    </div>
+                {% endif %}
+                <div class="ticket-description">
+                    <p>{{ ticket.description }}</p>
+                </div>
+            </div>
+        </div>        
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Envoyer</button>
-</form>
+        <div class="hr-container">
+            <hr>
+        </div>
 
-<a href="{% url 'feed' %}">Retour au flux d'activité</a>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="error-messages">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!-- Champ caché pour le ticket -->
+        {% if form.ticket %}
+            <input type="hidden" name="ticket" value="{{ ticket.id }}" id="id_ticket">
+        {% endif %}
+
+        <div class="form-group">
+            <div class="note-field">
+                <label for="{{ form.rating.id_for_label }}">{{ form.rating.label }}</label>
+                {{ form.rating }}
+                {% for error in form.rating.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="title-field">
+                <label for="{{ form.headline.id_for_label }}">{{ form.headline.label }}</label>
+                {{ form.headline }}
+                {% for error in form.headline.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="comment-field">
+                <label for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
+                <div class="comment-textarea-container">
+                    {{ form.body }}
+                    {% for error in form.body.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="submit-button-container">
+            <button type="submit" class="submit-button">Envoyer</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -69,8 +69,12 @@ class CreateReviewForTicketView(LoginRequiredMixin, View):
             review = review_form.save(commit=False)
             review.user = request.user
             review.save()
-
             return redirect('review_list')
+        else:
+            print("FORM NOT VALID **************")
+            for field, errors in review_form.errors.items():
+                for error in errors:
+                    print(f"{field}: {error}")
         return render(request, self.template_name, {
             'form': review_form
         })

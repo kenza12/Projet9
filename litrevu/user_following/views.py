@@ -16,7 +16,7 @@ class FollowUserView(LoginRequiredMixin, View):
 
     def get(self, request: 'HttpRequest') -> 'HttpResponse':
         """
-        Handles the GET request.
+        Handles the GET quest.
 
         Args:
             request (HttpRequest): The incoming HTTP request.

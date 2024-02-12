@@ -93,7 +93,7 @@ class FeedView(LoginRequiredMixin, View):
         # Combine les IDs des utilisateurs bloqués et bloqueurs
         excluded_users_ids = set(blocked_users_ids).union(set(blocking_users_ids))
 
-        # Filter reviews from followed users and the user, excluding blocked/blocking users
+        # Filtre les reviews des utilisateurs suivis et de l'utilisateur, en excluant les utilisateurs bloqués/bloqueurs
         reviews = Review.objects.filter(
             user__in=followed_users
         ).exclude(
@@ -107,8 +107,15 @@ class FeedView(LoginRequiredMixin, View):
             ticket__user__in=excluded_users_ids
         )
 
-        # Combine user's own reviews and reviews from followed users
-        combined_reviews = reviews | user_reviews
+        # Inclure les reviews en réponse aux tickets de l'utilisateur (même si l'utilisateur ne suit pas l'auteur de la review)
+        reviews_to_user_tickets = Review.objects.filter(
+            ticket__user=user
+        ).exclude(
+            user__in=excluded_users_ids
+        )
+
+        # Combine user's own reviews, reviews from followed users, and reviews to user's tickets
+        combined_reviews = reviews | user_reviews | reviews_to_user_tickets
 
         return combined_reviews.annotate(content_type=Value('REVIEW', CharField()))
 
