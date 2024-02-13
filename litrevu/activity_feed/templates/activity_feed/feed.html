@@ -30,7 +30,7 @@
                         <!-- Affichage du titre et de la description du ticket -->
                         <div class="ticket-text">
                             <h4>{{ post.ticket.title }}</h4>
-                            <p>{{ post.ticket.description }}</p>
+                            <p class="justified-description">{{ post.ticket.description }}</p>
                         </div>
                     </div>
                     <hr>
@@ -50,7 +50,7 @@
                                 {% endfor %}
                             </span>                            
                         </h4>
-                        <p>{{ post.body }}</p>
+                        <p class="justified-description">{{ post.body }}</p>
                     </div>
 
                     <!-- Bouton pour répondre au ticket, affiché seulement si l'utilisateur n'a pas déjà répondu -->
@@ -81,7 +81,7 @@
                         <!-- Affichage du titre et de la description du ticket -->
                         <div class="ticket-text">
                             <h4>{{ post.title }}</h4>
-                            <p>{{ post.description }}</p>
+                            <p class="justified-description">{{ post.description }}</p>
                         </div>
                     </div>
                     <!-- Bouton pour répondre au ticket -->

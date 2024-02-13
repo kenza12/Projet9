@@ -41,10 +41,14 @@ class CreateReviewWithTicketView(LoginRequiredMixin, View):
             review.save()
 
             return redirect('review_list')
-        return render(request, self.template_name, {
-            'ticket_form': ticket_form,
-            'review_form': review_form
-        })
+        else:
+            # Imprime les erreurs pour le débogage
+            print("Ticket Form Errors:", ticket_form.errors)
+            print("Review Form Errors:", review_form.errors)
+            return render(request, self.template_name, {
+                'ticket_form': ticket_form,
+                'review_form': review_form
+            })
 
 
 class CreateReviewForTicketView(LoginRequiredMixin, View):

@@ -1,17 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h2>Créer une Critique et un Ticket</h2>
-  <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div class="ticket-section">
-          <h3>Ticket (Article/Livre)</h3>
-          {{ ticket_form.as_p }}
-      </div>
-      <div class="review-section">
-          <h3>Critique</h3>
-          {{ review_form.as_p }}
-      </div>
-      <button type="submit">Envoyer</button>
-  </form>
+<div class="create-review-with-ticket-container">
+    <h2>Créer une Critique et un Ticket</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Ticket Section -->
+        <h3 class="section-title">Ticket (Article/Livre)</h3>
+        <div class="ticket-section">
+            {% for field in ticket_form.visible_fields %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="hr-container">
+            <hr>
+        </div>
+
+        <!-- Review Section -->
+        <h3 class="section-title">Critique</h3>
+        <div class="review-section">
+            {% for field in review_form.visible_fields %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="submit-button-container">
+            <button type="submit" class="submit-button">Envoyer</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

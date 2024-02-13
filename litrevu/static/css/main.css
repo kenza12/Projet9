@@ -208,6 +208,11 @@ header a:hover {
   font-size: 1.5em;
 }
 
+.post .ticket-text .justified-description, .post .review-section .justified-description {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .user-following-container {
   max-width: 700px;
   margin: 50px auto 0; /* 50px en haut, auto sur les côtés, 0 en bas */
@@ -539,7 +544,7 @@ header a:hover {
 }
 .response-to-ticket-container .submit-button-container {
   text-align: right;
-  width: 140%;
+  width: 135%;
 }
 .response-to-ticket-container .submit-button-container .submit-button {
   background-color: #bd7c5d;
@@ -555,6 +560,102 @@ header a:hover {
   font-size: 1em;
 }
 .response-to-ticket-container .submit-button-container .submit-button:hover {
+  background-color: #a46243;
+}
+
+.create-review-with-ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+  background-image: url("../images/biblio.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 35px;
+}
+.create-review-with-ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+.create-review-with-ticket-container .section-title {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 90%;
+  margin-left: -70%;
+  margin-bottom: 20px;
+  position: relative;
+}
+.create-review-with-ticket-container .section-title::before {
+  content: "";
+  display: inline-block;
+  background: url("/static/images/feather.png") no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+.create-review-with-ticket-container .hr-container {
+  width: 240%;
+  position: relative;
+  left: -70%;
+  padding: 10px;
+}
+.create-review-with-ticket-container .hr-container hr {
+  height: 2px;
+  background-color: #bd7c5d;
+  width: 100%;
+}
+.create-review-with-ticket-container .ticket-section, .create-review-with-ticket-container .review-section {
+  width: 160%;
+  margin-bottom: 20px;
+  margin-left: -30%;
+}
+.create-review-with-ticket-container .ticket-section .form-group label, .create-review-with-ticket-container .review-section .form-group label {
+  display: block;
+  color: brown;
+  font-weight: bold;
+  margin-bottom: 3px;
+  text-align: left;
+  padding-left: 10px;
+}
+.create-review-with-ticket-container .ticket-section .form-group select, .create-review-with-ticket-container .ticket-section .form-group input[type=text], .create-review-with-ticket-container .ticket-section .form-group input[type=number], .create-review-with-ticket-container .ticket-section .form-group input[type=file], .create-review-with-ticket-container .ticket-section .form-group textarea, .create-review-with-ticket-container .review-section .form-group select, .create-review-with-ticket-container .review-section .form-group input[type=text], .create-review-with-ticket-container .review-section .form-group input[type=number], .create-review-with-ticket-container .review-section .form-group input[type=file], .create-review-with-ticket-container .review-section .form-group textarea {
+  padding: 10px;
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
+}
+.create-review-with-ticket-container .ticket-section .form-group input[type=file], .create-review-with-ticket-container .review-section .form-group input[type=file] {
+  cursor: pointer;
+}
+.create-review-with-ticket-container .ticket-section .form-group textarea, .create-review-with-ticket-container .review-section .form-group textarea {
+  min-height: 300px;
+}
+.create-review-with-ticket-container .submit-button-container {
+  text-align: right;
+  width: 135%;
+}
+.create-review-with-ticket-container .submit-button-container .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+.create-review-with-ticket-container .submit-button-container .submit-button:hover {
   background-color: #a46243;
 }
 
