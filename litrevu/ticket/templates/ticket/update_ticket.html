@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="ticket-container modify-ticket-container">
@@ -10,15 +12,15 @@
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {% if field.name == 'image' %}
                     <div class="image-field">
-                        <div class="field-image">
-                            {{ field }}
-                            {% if field.value %}
-                                <div class="clear-checkbox" style="display: none;">
-                                    <!-- La case à cocher est générée automatiquement -->
-                                    <!-- Le label "Effacer" est caché avec style="display: none;" -->
+                        {% if field.value %}
+                            <div class="field-image-checkbox">
+                                <div class="field-image">
+                                    {{ field }}
                                 </div>
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
                     </div>
                 {% elif field.name == 'description' %}
                     <div class="description-field">
@@ -40,4 +42,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/forms.js' %}"></script>
 {% endblock %}

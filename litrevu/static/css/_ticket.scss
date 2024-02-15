@@ -339,31 +339,61 @@
 
 // Modifier un Ticket
 .modify-ticket-container {
-    @extend %ticket-styles;
+    @extend %ticket-styles; // Hériter du style de base des tickets
 
     .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
+        // Spécifique pour le champ "Image"
         .image-field {
-            width: 100%;
-            display: flex;
-            flex-direction: column; // Organisez les éléments en colonne
-
-            #field-image {
+            .field-image-checkbox {
                 display: flex;
-                flex-direction: column; 
-                align-items: flex-start;
-                width: 100%;
+                align-items: center;
+                margin-left: 15px;
 
-                input[type="file"] {
-                    align-self: flex-end; // Aligner à la fin
-                    margin-top: 10px; // Espace au-dessus du champ de fichier
+                .current-label, .modify-label {
+                    font-weight: bold;
+                    font-size: 0.9em;    // Légèrement plus petit que la taille normale
+                    color: rgba(165, 42, 42, 0.601);        // Couleur marron
                 }
 
-                // Sélectionner et cacher le label "Effacer"
+                input[type="checkbox"] {
+                    margin-right: 1px; // Espace entre la checkbox et le label
+                    margin-left: 10px;
+                }
+
                 label[for="image-clear_id"] {
-                    display: none;
+                    // Styliser le label "Effacer" pour qu'il apparaisse à droite de la checkbox
+                    display: inline-block;
+                    margin-bottom: 20px;
+                    font-size: 0.9em;
+                    color: rgb(150, 28, 28);
                 }
             }
+
+            input[type="file"] {
+                margin-top: 10px;
+            }
+        }
+
+        // Style pour le champ "Description"
+        .description-field textarea {
+            width: 163%;
+            min-height: 300px; // Hauteur minimum pour le textarea
+        }
+
+        // Style pour les autres champs
+        .other-field {
+            width: 100%; // Assurez que tous les autres champs aient une largeur de 100%
+        }
+
+        label {
+            margin-bottom: 10px; // Espacement uniforme entre le label et le champ
+        }
+        .hidden-label {
+            display: none; // Masquer le label
         }
     }
 }

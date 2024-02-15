@@ -664,22 +664,45 @@ header a:hover {
   background-color: #a46243;
 }
 
-.modify-ticket-container .form-group .image-field {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.modify-ticket-container .form-group .image-field #field-image {
+.modify-ticket-container .form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
 }
-.modify-ticket-container .form-group .image-field #field-image input[type=file] {
-  align-self: flex-end;
+.modify-ticket-container .form-group .image-field .field-image-checkbox {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox .current-label, .modify-ticket-container .form-group .image-field .field-image-checkbox .modify-label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: rgba(165, 42, 42, 0.601);
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox input[type=checkbox] {
+  margin-right: 1px;
+  margin-left: 10px;
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox label[for=image-clear_id] {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: rgb(150, 28, 28);
+}
+.modify-ticket-container .form-group .image-field input[type=file] {
   margin-top: 10px;
 }
-.modify-ticket-container .form-group .image-field #field-image label[for=image-clear_id] {
+.modify-ticket-container .form-group .description-field textarea {
+  width: 163%;
+  min-height: 300px;
+}
+.modify-ticket-container .form-group .other-field {
+  width: 100%;
+}
+.modify-ticket-container .form-group label {
+  margin-bottom: 10px;
+}
+.modify-ticket-container .form-group .hidden-label {
   display: none;
 }
 
