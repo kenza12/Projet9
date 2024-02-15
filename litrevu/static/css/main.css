@@ -692,19 +692,6 @@ header a:hover {
 .modify-ticket-container .form-group .image-field input[type=file] {
   margin-top: 10px;
 }
-.modify-ticket-container .form-group .description-field textarea {
-  width: 163%;
-  min-height: 300px;
-}
-.modify-ticket-container .form-group .other-field {
-  width: 100%;
-}
-.modify-ticket-container .form-group label {
-  margin-bottom: 10px;
-}
-.modify-ticket-container .form-group .hidden-label {
-  display: none;
-}
 
 .activity-buttons a, .ticket-response a.submit-button, .submit-button {
   background-color: #bd7c5d;

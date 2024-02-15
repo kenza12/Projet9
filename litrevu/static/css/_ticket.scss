@@ -377,23 +377,5 @@
                 margin-top: 10px;
             }
         }
-
-        // Style pour le champ "Description"
-        .description-field textarea {
-            width: 163%;
-            min-height: 300px; // Hauteur minimum pour le textarea
-        }
-
-        // Style pour les autres champs
-        .other-field {
-            width: 100%; // Assurez que tous les autres champs aient une largeur de 100%
-        }
-
-        label {
-            margin-bottom: 10px; // Espacement uniforme entre le label et le champ
-        }
-        .hidden-label {
-            display: none; // Masquer le label
-        }
     }
 }
