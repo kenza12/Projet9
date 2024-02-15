@@ -1,0 +1,123 @@
+@import 'variables';
+
+.user-following-container {
+    max-width: 700px;
+    margin: 50px auto 0; /* 50px en haut, auto sur les côtés, 0 en bas */
+    padding: 20px;
+    background-color: $container-bg-color;
+    border-radius: 20px;
+
+    h2, h3 {
+        color: #333;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+        li {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    }
+
+    .follow-form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 60px;
+    
+        input[type="text"] {
+            flex-grow: 0; // Empêche le champ de texte de se développer automatiquement
+            padding: 10px;
+            border: 2px solid $container-border-color; // Bordure marron
+            border-radius: 4px;
+            margin-right: 20px; // Espace entre le champ de texte et le bouton
+            width: 250px; // Largeur pour le champ
+        }
+
+        .btn-follow {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .btn-unfollow, .btn-block, .btn-unblock {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-left: 10px;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .btn-follow {
+        background-color: #bd7b5dba;
+        color: white;
+    }
+
+    .btn-unfollow {
+        background-color: rgba(159, 78, 78, 0.667);
+        color: white;
+    }
+
+    .btn-block {
+        background-color: rgba(195, 18, 18, 0.601);
+        color: white;
+    }
+
+    .btn-unblock {
+        background-color: #527653b1;
+        color: white;
+    }
+
+    .user-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px; // Ajusté de -100px à 10px
+    }
+
+    .user-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+
+        img, span {
+            margin-right: 10px; // Espace uniforme entre les éléments
+        }
+
+        .user-info {
+            flex-grow: 1; // Permet à cette div de prendre tout l'espace disponible
+            display: flex;
+            align-items: center;
+        }
+
+        .action-form {
+            margin-left: auto; // Espace uniforme entre les boutons et les autres éléments
+        }
+    }
+
+    .followed-users,
+    .followers,
+    .blocked-users {
+        margin-bottom: 50px; /* Ajoute de l'espace en bas de chaque section */
+    }
+
+    .custom-hr {
+        border-color: #bd7b5dba; /* Couleur marron */
+        width: 100%; /* Longueur personnalisée */
+        margin: 50px auto; /* Marge autour de la ligne */
+    }
+}

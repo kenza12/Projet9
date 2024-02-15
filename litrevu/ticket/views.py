@@ -3,29 +3,35 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Ticket
 from .forms import TicketForm
+from reviews.models import Review
+from utils import get_stars
 
 
 
 class TicketListView(LoginRequiredMixin, View):
     """
-    Display a list of all tickets.
-    
-    Extends the View class and uses LoginRequiredMixin to ensure only authenticated
-    users can access this view.
+    Display a list of tickets and reviews related to the user.
     """
 
     def get(self, request):
-        """
-        Handle GET requests and return a list of tickets.
+        tickets = Ticket.objects.filter(user=request.user)
+        reviews_to_user_tickets = Review.objects.filter(ticket__user=request.user)
+        user_reviews = Review.objects.filter(user=request.user)
 
-        Args:
-            request (HttpRequest): The incoming request object.
+        # Ajouter les étoiles aux reviews
+        for review in reviews_to_user_tickets:
+            review.stars_str = ''.join(['★' if star else '☆' for star in get_stars(review.rating)])
 
-        Returns:
-            HttpResponse: Rendered HTML response with the list of tickets.
-        """
-        tickets = Ticket.objects.all()
-        return render(request, 'ticket/ticket_list.html', {'tickets': tickets})
+        for review in user_reviews:
+            review.stars_str = ''.join(['★' if star else '☆' for star in get_stars(review.rating)])
+
+        context = {
+            'tickets': tickets,
+            'reviews_to_user_tickets': reviews_to_user_tickets,
+            'user_reviews': user_reviews
+        }
+
+        return render(request, 'ticket/ticket_list.html', context)
 
 
 class CreateTicketView(LoginRequiredMixin, View):

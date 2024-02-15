@@ -1,42 +1,127 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Mes Tickets</h2>
+<h2>Vos Posts</h2>
 
-<ul>
+<div class="post-container">
+    <!-- Affichage des tickets de l'utilisateur -->
     {% for ticket in tickets %}
-    {% if ticket.user == request.user %}
-    <li>
-        <!-- Afficher l'image du ticket si elle existe -->
-        {% if ticket.image %}
-        <img src="{{ ticket.image.url }}" alt="Image du ticket" style="max-width: 200px; max-height: 200px;">
-        {% endif %}
-
-        <strong>{{ ticket.title }}</strong> - posté par moi
-        <br>
-        {{ ticket.description|linebreaksbr }}
-
-        <a href="{% url 'update_ticket' ticket.id %}">Modifier le ticket</a> |
-        <a href="{% url 'delete_ticket' ticket.id %}">Supprimer le ticket</a>
-
-        <!-- Afficher les critiques liées à ce ticket -->
-        {% for review in ticket.review_set.all %}
-            {% if review.user == request.user %}
-            <div>
-                <strong>Ma Critique:</strong>
-                <p>{{ review.headline }}</p>
-                <p>{{ review.body|linebreaksbr }}</p>
-                <p>Note: {{ review.rating }}/5</p>
-
-                <a href="{% url 'update_review' review.id %}">Modifier la critique</a> |
-                <a href="{% url 'delete_review' review.id %}">Supprimer la critique</a>
+        <div class="post ticket-layout">
+            <div class="post-header">
+                <span class="post-time">{{ ticket.time_created|date:"d M Y, H:i" }}</span>
             </div>
+
+            <div class="ticket-header">
+                <h3>Vous avez publié un Ticket</h3>
+            </div>
+
+            <div class="ticket-content">
+                {% if ticket.image %}
+                    <div class="ticket-image">
+                        <img src="{{ ticket.image.url }}" alt="Image du ticket">
+                    </div>
+                {% endif %}
+                <div class="ticket-text">
+                    <h4>{{ ticket.title }}</h4>
+                    <p class="justified-description">{{ ticket.description }}</p>
+                </div>
+            </div>
+
+            <div class="ticket-actions">
+                <a href="{% url 'update_ticket' ticket.id %}" class="edit-button">Modifier</a>
+                <a href="{% url 'delete_ticket' ticket.id %}" class="delete-button">Supprimer</a>
+            </div>
+        </div>
+
+        <!-- Affichage des critiques de l'utilisateur pour ce ticket -->
+        {% for review in reviews_to_user_tickets %}
+            {% if review.ticket == ticket %}
+                <div class="post review-layout">
+                    <div class="post-header">
+                        <span class="post-time">{{ review.time_created|date:"d M Y, H:i" }}</span>
+                    </div>
+
+                    <div class="review-header">
+                        <h3>Vous avez publié une critique</h3>
+                    </div>
+
+                    <div class="review-content">
+                        <h4>{{ review.headline }} - <span class="rating">{{ review.stars_str }}</span></h4>
+                        <p class="justified-description">{{ review.body }}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="ticket-header">
+                        <h3>Ticket - {{ review.ticket.user.username }}</h3>
+                    </div>
+                    <div class="ticket-display">
+                        <div class="ticket-image">
+                            {% if review.ticket.image %}
+                                <img src="{{ review.ticket.image.url }}" alt="Image du ticket">
+                            {% endif %}
+                        </div>
+                        <div class="ticket-details">
+                            <div class="ticket-text">
+                                <h4>{{ review.ticket.title }}</h4>
+                                <p class="justified-description">{{ review.ticket.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-actions">
+                        <a href="{% url 'update_review' review.id %}" class="edit-button">Modifier</a>
+                        <a href="{% url 'delete_review' review.id %}" class="delete-button">Supprimer</a>
+                    </div>
+                </div>
             {% endif %}
-        {% empty %}
-            <p>Aucune critique pour ce ticket.</p>
         {% endfor %}
-    </li>
-    {% endif %}
     {% endfor %}
-</ul>
+
+<!-- Affichage des critiques de l'utilisateur pour les tickets d'autres utilisateurs -->
+    {% for review in user_reviews %}
+        {% if review.ticket.user != request.user %}
+            <div class="post review-layout">
+                <div class="post-header">
+                    <span class="post-time">{{ review.time_created|date:"d M Y, H:i" }}</span>
+                </div>
+
+                <div class="review-header">
+                    <h3>Vous avez publié une critique</h3>
+                </div>
+
+                <div class="review-content">
+                    <h4>{{ review.headline }} - <span class="rating">{{ review.stars_str }}</span></h4>
+                    <p class="justified-description">{{ review.body }}</p>
+                </div>
+
+                <hr>
+
+                <!-- Structure similaire à celle des tickets normaux pour l'affichage du ticket -->
+                <div class="ticket-header">
+                    <h3>Ticket - {{ review.ticket.user.username }}</h3>
+                </div>
+                <div class="ticket-display">
+                    <div class="ticket-image">
+                        {% if review.ticket.image %}
+                            <img src="{{ review.ticket.image.url }}" alt="Image du ticket">
+                        {% endif %}
+                    </div>
+                    <div class="ticket-details">
+                        <div class="ticket-text">
+                            <h4>{{ review.ticket.title }}</h4>
+                            <p class="justified-description">{{ review.ticket.description }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-actions">
+                    <a href="{% url 'update_review' review.id %}" class="edit-button">Modifier</a>
+                    <a href="{% url 'delete_review' review.id %}" class="delete-button">Supprimer</a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
 {% endblock content %}

@@ -1,0 +1,88 @@
+@import 'variables';
+@import 'buttons';
+
+.post-container {
+    max-width: 850px;
+    margin: 50px auto;
+
+    .post {
+        background-color: $container-bg-color;
+        border: 2px solid $container-border-color;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px $shadow-color;
+        padding: 20px;
+        margin-bottom: 20px;
+
+        .ticket-header {
+            h3 {
+                color: $brown-color-title;
+                margin-bottom: 10px;
+                text-align: left;
+            }
+        }
+
+        .review-header {
+            h3 {
+                color: $brown-color-title;
+                margin-bottom: 10px;
+                text-align: left;
+            }
+        }
+
+        .ticket-display {
+            display: flex;
+            align-items: start;
+
+            .ticket-image {
+                flex: 0 0 auto;
+                img {
+                    max-width: 250px;
+                    max-height: 250px;
+                    transform: rotate(-3deg);
+                    margin-right: 20px;
+                }
+            }
+
+            .ticket-details {
+                flex: 1;
+                
+                .ticket-text {
+                    margin-left: 40px;
+                    h4 {
+                        color: $brown-color-title;
+                        text-align: left;
+                    }
+                    .justified-description {
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+
+        .review-content {
+            margin-left: 40px;
+            h4 {
+                color: $brown-color-title;
+                text-align: left;
+            }
+            .justified-description {
+                text-align: justify;
+            }
+        }
+
+        .ticket-actions, .review-actions {
+            text-align: right;
+            margin-top: 20px;
+
+            a {
+                @include button-styles;
+                margin-right: 10px;
+            }
+        }
+
+        hr {
+            border-top: 1px solid $container-border-color;
+            margin: 20px 0;
+        }
+    }
+}

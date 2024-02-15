@@ -341,19 +341,19 @@ header a:hover {
   margin-top: 10px;
 }
 
-.ticket-container {
+.modify-ticket-container, .ticket-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto;
   max-width: 900px;
 }
-.ticket-container h2 {
+.modify-ticket-container h2, .ticket-container h2 {
   color: rgba(59, 16, 16, 0.931);
   text-align: center;
   margin-bottom: 30px;
 }
-.ticket-container form {
+.modify-ticket-container form, .ticket-container form {
   position: relative;
   padding: 50px;
   border-radius: 100px;
@@ -361,7 +361,7 @@ header a:hover {
   background-color: white;
   box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
 }
-.ticket-container form::before {
+.modify-ticket-container form::before, .ticket-container form::before {
   content: "";
   position: absolute;
   top: 10px;
@@ -375,7 +375,7 @@ header a:hover {
   border-radius: 40px;
   z-index: 0;
 }
-.ticket-container form::after {
+.modify-ticket-container form::after, .ticket-container form::after {
   content: "";
   position: absolute;
   top: 0;
@@ -386,26 +386,31 @@ header a:hover {
   border-radius: 50px;
   z-index: -1;
 }
-.ticket-container form .form-group, .ticket-container form .submit-button-container {
+.modify-ticket-container form .form-group, .ticket-container form .form-group, .modify-ticket-container form .submit-button-container, .ticket-container form .submit-button-container {
   position: relative;
   z-index: 1;
 }
-.ticket-container form .form-group {
+.modify-ticket-container form .form-group, .ticket-container form .form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.ticket-container form .form-group label {
+.modify-ticket-container form .form-group label, .ticket-container form .form-group label {
   margin-bottom: 10px;
   color: rgba(82, 9, 9, 0.479);
   font-weight: bold;
   display: block;
 }
-.ticket-container form .form-group input[type=text],
+.modify-ticket-container form .form-group input[type=text], .ticket-container form .form-group input[type=text],
+.modify-ticket-container form .form-group input[type=password],
 .ticket-container form .form-group input[type=password],
+.modify-ticket-container form .form-group input[type=email],
 .ticket-container form .form-group input[type=email],
+.modify-ticket-container form .form-group select,
 .ticket-container form .form-group select,
+.modify-ticket-container form .form-group input[type=file],
 .ticket-container form .form-group input[type=file],
+.modify-ticket-container form .form-group textarea,
 .ticket-container form .form-group textarea {
   border: 2px solid #bd7c5d;
   border-radius: 5px;
@@ -414,17 +419,17 @@ header a:hover {
   width: 100%;
   box-sizing: border-box;
 }
-.ticket-container form .form-group textarea {
+.modify-ticket-container form .form-group textarea, .ticket-container form .form-group textarea {
   min-height: 300px;
   width: 163%;
 }
-.ticket-container form .form-group .description-field {
+.modify-ticket-container form .form-group .description-field, .ticket-container form .form-group .description-field {
   margin-bottom: 5px;
 }
-.ticket-container form .submit-button-container {
+.modify-ticket-container form .submit-button-container, .ticket-container form .submit-button-container {
   text-align: right;
 }
-.ticket-container form button {
+.modify-ticket-container form button, .ticket-container form button {
   background-color: #bd7c5d;
   color: white;
   font-weight: bold;
@@ -435,10 +440,10 @@ header a:hover {
   font-size: 14px;
   text-decoration: none;
 }
-.ticket-container form button:hover {
+.modify-ticket-container form button:hover, .ticket-container form button:hover {
   background-color: #a46243;
 }
-.ticket-container .errorlist, .ticket-container .error-message {
+.modify-ticket-container .errorlist, .ticket-container .errorlist, .modify-ticket-container .error-message, .ticket-container .error-message {
   color: red;
   font-weight: bold;
   margin: 20px 0;
@@ -657,6 +662,132 @@ header a:hover {
 }
 .create-review-with-ticket-container .submit-button-container .submit-button:hover {
   background-color: #a46243;
+}
+
+.modify-ticket-container .form-group .image-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.modify-ticket-container .form-group .image-field #field-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.modify-ticket-container .form-group .image-field #field-image input[type=file] {
+  align-self: flex-end;
+  margin-top: 10px;
+}
+.modify-ticket-container .form-group .image-field #field-image label[for=image-clear_id] {
+  display: none;
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.post-container {
+  max-width: 850px;
+  margin: 50px auto;
+}
+.post-container .post {
+  background-color: #f9f9f9;
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.post-container .post .ticket-header h3 {
+  color: rgba(59, 16, 16, 0.931);
+  margin-bottom: 10px;
+  text-align: left;
+}
+.post-container .post .review-header h3 {
+  color: rgba(59, 16, 16, 0.931);
+  margin-bottom: 10px;
+  text-align: left;
+}
+.post-container .post .ticket-display {
+  display: flex;
+  align-items: start;
+}
+.post-container .post .ticket-display .ticket-image {
+  flex: 0 0 auto;
+}
+.post-container .post .ticket-display .ticket-image img {
+  max-width: 250px;
+  max-height: 250px;
+  transform: rotate(-3deg);
+  margin-right: 20px;
+}
+.post-container .post .ticket-display .ticket-details {
+  flex: 1;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text {
+  margin-left: 40px;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text h4 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: left;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text .justified-description {
+  text-align: justify;
+}
+.post-container .post .review-content {
+  margin-left: 40px;
+}
+.post-container .post .review-content h4 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: left;
+}
+.post-container .post .review-content .justified-description {
+  text-align: justify;
+}
+.post-container .post .ticket-actions, .post-container .post .review-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+.post-container .post .ticket-actions a, .post-container .post .review-actions a {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.post-container .post .ticket-actions a:hover, .post-container .post .review-actions a:hover {
+  background-color: #a46243;
+}
+.post-container .post hr {
+  border-top: 1px solid rgba(189, 123, 93, 0.6549019608);
+  margin: 20px 0;
 }
 
 /*# sourceMappingURL=main.css.map */
