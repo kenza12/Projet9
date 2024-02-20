@@ -1,9 +1,18 @@
 @import 'variables';
 @import 'buttons';
 
+// Styles pour la page posts
+.posts-title-container h2 {
+    font-size: 2em;
+    color: $brown-color-title; 
+    text-align: center;
+    padding : 10px;
+    margin-top: 50px;
+}
+
 .post-container {
     max-width: 850px;
-    margin: 50px auto;
+    margin: 20px auto;
 
     .post {
         background-color: $container-bg-color;

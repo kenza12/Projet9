@@ -12,7 +12,7 @@
             {% if post.content_type == 'REVIEW' %}
                 <!-- Cas d'une critique associée à un ticket -->
                 <div class="post combined-post">
-                    <!-- Afficher la date et l'heure de création du post en haut à droite -->
+                    <!-- Afficher la date et l'heure de création du post -->
                     <div class="post-header">
                         <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
                     </div>
@@ -43,9 +43,9 @@
                             <span class="rating">
                                 {% for star_filled in post.stars %}
                                     {% if star_filled %}
-                                        ★ <!-- Étoile remplie -->
+                                        ★
                                     {% else %}
-                                        ☆ <!-- Étoile vide -->
+                                        ☆
                                     {% endif %}
                                 {% endfor %}
                             </span>                            
@@ -63,7 +63,7 @@
             {% elif post.content_type == 'TICKET' and not post.review_set.exists %}
                 <!-- Cas d'un ticket seul sans critique associée -->
                 <div class="post ticket-layout">
-                    <!-- Afficher la date et l'heure de création du post en haut à droite -->
+                    <!-- Afficher la date et l'heure de création du post  -->
                     <div class="post-header">
                         <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
                     </div>

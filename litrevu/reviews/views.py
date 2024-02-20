@@ -9,10 +9,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
-class ReviewListView(LoginRequiredMixin, ListView):
-    model = Review
-    template_name = 'reviews/review_list.html'
-    context_object_name = 'reviews'
+# class ReviewListView(LoginRequiredMixin, ListView):
+#     model = Review
+#     template_name = 'reviews/review_list.html'
+#     context_object_name = 'reviews'
 
 
 class CreateReviewWithTicketView(LoginRequiredMixin, View):
@@ -40,7 +40,7 @@ class CreateReviewWithTicketView(LoginRequiredMixin, View):
             review.user = request.user
             review.save()
 
-            return redirect('review_list')
+            return redirect('ticket_list')
         else:
             # Imprime les erreurs pour le débogage
             print("Ticket Form Errors:", ticket_form.errors)
@@ -73,7 +73,7 @@ class CreateReviewForTicketView(LoginRequiredMixin, View):
             review = review_form.save(commit=False)
             review.user = request.user
             review.save()
-            return redirect('review_list')
+            return redirect('ticket_list')
         else:
             print("FORM NOT VALID **************")
             for field, errors in review_form.errors.items():
@@ -89,16 +89,17 @@ class UpdateReviewView(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         review = get_object_or_404(Review, pk=pk, user=request.user)
+        ticket = review.ticket  # Récupérer le ticket associé à la critique
         form = ReviewForm(instance=review)
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'ticket': ticket})
 
     def post(self, request, pk):
         review = get_object_or_404(Review, pk=pk, user=request.user)
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
-            return redirect('review_list')
-        return render(request, self.template_name, {'form': form})
+            return redirect('ticket_list')
+        return render(request, self.template_name, {'form': form, 'ticket': review.ticket})
 
 class DeleteReviewView(LoginRequiredMixin, View):
     template_name = 'reviews/delete_review.html'
@@ -110,4 +111,4 @@ class DeleteReviewView(LoginRequiredMixin, View):
     def post(self, request, pk):
         review = get_object_or_404(Review, pk=pk, user=request.user)
         review.delete()
-        return redirect('review_list')
+        return redirect('ticket_list')

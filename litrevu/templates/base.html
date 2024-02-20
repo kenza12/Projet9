@@ -10,12 +10,16 @@
 
 <body>
     <header>
-        <div style="text-align: right;">
-            <a href="{% url 'feed' %}">Flux</a> |
-            <a href="{% url 'ticket_list' %}">Posts</a> |
-            <a href="{% url 'follow_user' %}">Abonnements</a>
+        <div class="header-links">
+            <span><a href="{% url 'feed' %}">Flux</a></span>
+            <span>|</span>
+            <span><a href="{% url 'ticket_list' %}">Posts</a></span>
+            <span>|</span>
+            <span><a href="{% url 'follow_user' %}">Abonnements</a></span>
             {% if user.is_authenticated %}
-                | <a href="{% url 'logout' %}">Se déconnecter</a> <span class="user-info">(Connecté(e) en tant que {{ user.username }})</span>
+                <span>|</span>
+                <span><a href="{% url 'logout' %}">Se déconnecter</a></span>
+                <span class="user-info">(Connecté(e) en tant que {{ user.username }})</span>
             {% endif %}
         </div>
     </header>

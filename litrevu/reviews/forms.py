@@ -11,6 +11,9 @@ class ReviewForm(forms.ModelForm):
             'headline': 'Titre',
             'body': 'Commentaire'
         }
+        widgets = {
+            'rating': forms.Select(choices=[(n, n) for n in range(6)]),
+        }
 
 class ReviewFormWithoutTicket(forms.ModelForm):
     class Meta:
@@ -20,4 +23,7 @@ class ReviewFormWithoutTicket(forms.ModelForm):
             'rating': 'Note',
             'headline': 'Titre',
             'body': 'Commentaire'
+        }
+        widgets = {
+            'rating': forms.Select(choices=[(n, n) for n in range(6)]),
         }

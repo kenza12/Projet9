@@ -3,7 +3,7 @@
 
 // Styles pour le conteneur principal du flux d'activité et chaque post individuel
 .feed-container, .post {
-  border-radius: 5px; // Rayon de bordure standard
+  border-radius: 5px;
   margin-bottom: 15px;
   padding: 20px;
   text-align: center;
@@ -18,15 +18,15 @@
   &.post {
     background-color: $container-bg-color;
     border: 2px solid $container-border-color;
-    border-radius: 10px; // Augmente le rayon de la bordure pour un aspect plus doux
-    box-shadow: 0 2px 4px $shadow-color; // Ajoute une ombre légère pour la profondeur
-    font-family: $font-family; // Applique la police Roboto
+    border-radius: 10px;
+    box-shadow: 0 2px 4px $shadow-color;
+    font-family: $font-family;
 
     // Style pour l'en-tête de chaque post (date et heure)
     .post-header {
       text-align: right;
-      margin-top: 10px; // Ajouter un peu d'espace en haut
-      margin-right: 10px; // Ajouter un peu d'espace à droite
+      margin-top: 10px;
+      margin-right: 10px;
       font-size: 0.9em;
       color: $date-color;
 
@@ -56,11 +56,11 @@
   }
 
   .ticket-content {
-    display: flex; // Flexbox pour aligner l'image et le texte
-    align-items: center; // Alignement vertical des éléments
+    display: flex;
+    align-items: center;
 
     .ticket-image {
-      flex: 0 0 auto; // Flexibilité de l'image
+      flex: 0 0 auto;
       margin-right: 20px;
 
       img {
@@ -68,31 +68,31 @@
         max-height: 250px;
         margin: 20px auto;
         margin-left: 10px;
-        transform: rotate(-3deg); // Rotation légère de l'image
+        transform: rotate(-3deg);
       }
     }
 
     .ticket-text {
-      flex: 1; // Flexibilité pour occuper l'espace restant
-      text-align: left; // Alignement du texte à gauche
+      flex: 1;
+      text-align: left;
       margin-left: 40px;
     }
   }
 
   hr {
-    border-top: 1px solid $container-border-color; // Bordure supérieure
-    margin: 20px 0; // Marge en haut et en bas
+    border-top: 1px solid $container-border-color;
+    margin: 20px 0;
   }
 }
 
 // Style pour les étoiles de notation
 .rating {
-  display: inline-block; // Affichage en ligne avec ajustement de la taille
+  display: inline-block;
   color: $star-color;
   font-size: 1.5em;
 }
 
 .post .ticket-text .justified-description, .post .review-section .justified-description {
-  text-align: justify; // Justifie le texte
-  text-justify: inter-word; // Assure une répartition uniforme des mots
+  text-align: justify;
+  text-justify: inter-word;
 }

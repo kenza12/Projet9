@@ -90,6 +90,23 @@ class FeedView(LoginRequiredMixin, View):
         return combined_posts
 
     def get_users_viewable_reviews(self, user, followed_users, blocked_users_ids, blocking_users_ids):
+        """
+        Récupère les critiques ('reviews') visibles par l'utilisateur.
+
+        Cette méthode permet de filtrer et de retourner les critiques qui sont visibles par l'utilisateur donné.
+        Elle inclut les critiques des utilisateurs suivis par l'utilisateur (sauf ceux bloqués), ainsi que ses propres critiques.
+        Les critiques en réponse aux tickets de l'utilisateur sont également incluses, même si l'auteur de la critique n'est pas suivi par l'utilisateur.
+
+        Args:
+            user (CustomUser): L'utilisateur pour lequel la liste des critiques est récupérée.
+            followed_users (QuerySet): Les utilisateurs que l'utilisateur suit.
+            blocked_users_ids (list): Les identifiants des utilisateurs bloqués par l'utilisateur.
+            blocking_users_ids (list): Les identifiants des utilisateurs qui ont bloqué l'utilisateur.
+
+        Returns:
+            QuerySet: Un QuerySet des critiques filtrées, annoté avec un champ 'content_type' pour identifier le type de contenu.
+        """
+
         # Combine les IDs des utilisateurs bloqués et bloqueurs
         excluded_users_ids = set(blocked_users_ids).union(set(blocking_users_ids))
 
@@ -121,6 +138,23 @@ class FeedView(LoginRequiredMixin, View):
 
 
     def get_users_viewable_tickets(self, user, followed_users, blocked_users_ids, blocking_users_ids):
+        """
+        Récupère les tickets visibles par l'utilisateur.
+
+        Cette méthode filtre et retourne les tickets qui sont visibles par l'utilisateur donné. 
+        Elle inclut les tickets des utilisateurs suivis par l'utilisateur, ainsi que ses propres tickets, 
+        en excluant les tickets des utilisateurs bloqués ou qui ont bloqué l'utilisateur.
+
+        Args:
+            user (CustomUser): L'utilisateur pour lequel la liste des tickets est récupérée.
+            followed_users (QuerySet): Les utilisateurs que l'utilisateur suit.
+            blocked_users_ids (list): Les identifiants des utilisateurs bloqués par l'utilisateur.
+            blocking_users_ids (list): Les identifiants des utilisateurs qui ont bloqué l'utilisateur.
+
+        Returns:
+            QuerySet: Un QuerySet des tickets filtrés, annoté avec un champ 'content_type' pour identifier le type de contenu.
+        """
+
         # Combine les IDs des utilisateurs bloqués et bloqueurs
         excluded_users_ids = set(blocked_users_ids).union(set(blocking_users_ids))
 

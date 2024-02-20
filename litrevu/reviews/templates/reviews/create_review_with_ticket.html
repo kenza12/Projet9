@@ -2,23 +2,27 @@
 {% load static %}
 
 {% block content %}
+<!-- Ce template affiche la view qui permet de créer une review avec un ticket -->
 <div class="create-review-with-ticket-container">
     <h2>Créer une Critique et un Ticket</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        
         <!-- Ticket Section -->
-        <h3 class="section-title">Ticket (Article/Livre)</h3>
+        <h3 class="section-title-ticket">Ticket (Article/Livre)</h3>
         <div class="ticket-section">
-            {% for field in ticket_form.visible_fields %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <p class="error-message">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+            {% for field in ticket_form %}
+                {% if field.name != 'rating' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <p class="error-message">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
 
@@ -27,18 +31,29 @@
         </div>
 
         <!-- Review Section -->
-        <h3 class="section-title">Critique</h3>
+        <h3 class="section-title-critique">Critique</h3>
         <div class="review-section">
-            {% for field in review_form.visible_fields %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <p class="error-message">{{ error }}</p>
+            {% for field in review_form %}
+                {% if field.name != 'rating' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <p class="error-message">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <!-- Gestion de l'évaluation par étoiles pour le champ 'rating' -->
+                    <div class="form-group rating-stars">
+                        <label>{{ field.label }}</label>
+                        {% for i in "12345" %}
+                            <span class="star" data-value="{{ i }}">★</span>
                         {% endfor %}
-                    {% endif %}
-                </div>
+                        <input type="hidden" name="{{ field.name }}" id="rating" value="{{ field.value }}">
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
 
@@ -47,4 +62,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/forms.js' %}"></script>
 {% endblock %}

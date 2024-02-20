@@ -1,8 +1,9 @@
 @import 'variables';
 
+// Styles pour la page Abonnements
 .user-following-container {
     max-width: 700px;
-    margin: 50px auto 0; /* 50px en haut, auto sur les côtés, 0 en bas */
+    margin: 50px auto 0;
     padding: 20px;
     background-color: $container-bg-color;
     border-radius: 20px;
@@ -27,12 +28,12 @@
         margin-bottom: 60px;
     
         input[type="text"] {
-            flex-grow: 0; // Empêche le champ de texte de se développer automatiquement
+            flex-grow: 0;
             padding: 10px;
-            border: 2px solid $container-border-color; // Bordure marron
+            border: 2px solid $container-border-color;
             border-radius: 4px;
-            margin-right: 20px; // Espace entre le champ de texte et le bouton
-            width: 250px; // Largeur pour le champ
+            margin-right: 20px; 
+            width: 250px;
         }
 
         .btn-follow {
@@ -86,7 +87,7 @@
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 10px; // Ajusté de -100px à 10px
+        margin-right: 10px;
     }
 
     .user-item {
@@ -95,29 +96,36 @@
         margin-bottom: 15px;
 
         img, span {
-            margin-right: 10px; // Espace uniforme entre les éléments
+            margin-right: 10px;
         }
 
         .user-info {
-            flex-grow: 1; // Permet à cette div de prendre tout l'espace disponible
+            flex-grow: 1;
             display: flex;
             align-items: center;
         }
 
         .action-form {
-            margin-left: auto; // Espace uniforme entre les boutons et les autres éléments
+            margin-left: auto;
         }
     }
 
     .followed-users,
     .followers,
     .blocked-users {
-        margin-bottom: 50px; /* Ajoute de l'espace en bas de chaque section */
+        margin-bottom: 50px; 
     }
 
     .custom-hr {
-        border-color: #bd7b5dba; /* Couleur marron */
-        width: 100%; /* Longueur personnalisée */
-        margin: 50px auto; /* Marge autour de la ligne */
+        border-color: #bd7b5dba;
+        width: 100%;
+        margin: 50px auto;
     }
+}
+
+// Style pour les messages d'erreur
+.error {
+    color: $red-color-error;
+    font-weight: bold;
+    margin: 10px 0;
 }

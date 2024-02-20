@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<!-- Ce template affiche la view qui permet de créer une review en réponse à un ticket -->
 <div class="response-to-ticket-container">
     <h2>Répondre à un Ticket</h2>
 
     {% if ticket %}
+    <!-- Si un ticket est fourni, il affiche les détails du ticket, y compris le titre, l'auteur, la date de création, l'image (si disponible) et la description. -->
         <h3>Vous êtes en train de poster en réponse au ticket : {{ ticket.title }}</h3>
         <div class="ticket-details">
             <div class="ticket-header">
@@ -30,6 +33,8 @@
     {% endif %}
 
     <form method="post" enctype="multipart/form-data">
+        <!-- formulaire pour soumettre sa réponse au ticket. -->
+        {% if form.ticket %}
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -45,12 +50,16 @@
         {% endif %}
 
         <div class="form-group">
+            <!-- Gestion de l'évaluation par étoiles pour le champ 'rating' rendu intéractif avec JS -->
             <div class="note-field">
                 <label for="{{ form.rating.id_for_label }}">{{ form.rating.label }}</label>
-                {{ form.rating }}
-                {% for error in form.rating.errors %}
-                    <p class="error-message">{{ error }}</p>
-                {% endfor %}
+                <div class="rating-stars">
+                    {% for i in "12345" %}
+                        <span class="star" data-value="{{ i }}">★</span>
+                    {% endfor %}
+                </div>
+                <!-- Champ caché pour Notes qui stocke la valeur de la note sélectionnée.-->
+                <input type="hidden" name="{{ form.rating.name }}" id="rating" value="{{ form.rating.value }}">
             </div>
             <div class="title-field">
                 <label for="{{ form.headline.id_for_label }}">{{ form.headline.label }}</label>
@@ -74,4 +83,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/forms.js' %}"></script>
 {% endblock %}

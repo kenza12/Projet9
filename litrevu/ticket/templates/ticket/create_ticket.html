@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
+<!-- Ce template affiche la view qui permet de créer un ticket -->
 {% block content %}
-    <!-- Container principal pour la page de création de ticket -->
     <div class="ticket-container">
-        <!-- Fond blanc derrière l'image -->
         <div class="form-background"></div>
-        <!-- Titre de la page -->
         <h2>Créer un Ticket</h2>
 
         <!-- Formulaire de création de ticket -->
         <form method="post" enctype="multipart/form-data">
-            {% csrf_token %} <!-- Token CSRF pour la sécurité -->
+            {% csrf_token %}
 
             <!-- Génère les champs du formulaire -->
             <div class="form-group">
@@ -32,7 +30,7 @@
                 {% endfor %}
             </div>
 
-            <!-- Conteneur pour le bouton Enregistrer aligné à droite -->
+            <!-- Conteneur pour le bouton Enregistrer -->
             <div class="submit-button-container">
                 <button type="submit">Enregistrer</button>
             </div>

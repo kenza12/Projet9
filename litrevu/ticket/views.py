@@ -5,6 +5,7 @@ from .models import Ticket
 from .forms import TicketForm
 from reviews.models import Review
 from utils import get_stars
+from itertools import chain
 
 
 
@@ -14,32 +15,43 @@ class TicketListView(LoginRequiredMixin, View):
     """
 
     def get(self, request):
-        tickets = Ticket.objects.filter(user=request.user)
-        reviews_to_user_tickets = Review.objects.filter(ticket__user=request.user)
-        user_reviews = Review.objects.filter(user=request.user)
 
-        # Ajouter les étoiles aux reviews
-        for review in reviews_to_user_tickets:
-            review.stars_str = ''.join(['★' if star else '☆' for star in get_stars(review.rating)])
+        # Retrieve tickets created by the currently logged-in user, sorted by creation time.
+        tickets = Ticket.objects.filter(user=request.user).order_by('-time_created')
 
-        for review in user_reviews:
-            review.stars_str = ''.join(['★' if star else '☆' for star in get_stars(review.rating)])
+        # Retrieve reviews associated with tickets belonging to the currently logged-in user, sorted by creation time.
+        reviews_to_user_tickets = Review.objects.filter(ticket__user=request.user).order_by('-time_created')
 
-        context = {
-            'tickets': tickets,
-            'reviews_to_user_tickets': reviews_to_user_tickets,
-            'user_reviews': user_reviews
-        }
+        # Retrieve reviews created by the currently logged-in user but exclude those left on their own tickets, sorted by creation time.
+        user_reviews = Review.objects.filter(user=request.user).exclude(ticket__user=request.user).order_by('-time_created')
 
-        return render(request, 'ticket/ticket_list.html', context)
+        # Function to annotate posts with types and stars
+        def annotate_posts(posts, post_type):
+            for post in posts:
+                post.type = post_type
+                if hasattr(post, 'rating'):
+                    post.stars_str = ''.join(['★' if star else '☆' for star in get_stars(post.rating)])
+            return posts
+
+        # Annotating each type of post
+        annotated_tickets = annotate_posts(tickets, 'ticket')
+        annotated_reviews_to_user_tickets = annotate_posts(reviews_to_user_tickets, 'review_to_user_ticket')
+        annotated_user_reviews = annotate_posts(user_reviews, 'user_review')
+
+        # Merging tickets and reviews into a single sorted list
+        all_posts = sorted(
+            chain(annotated_tickets, annotated_reviews_to_user_tickets, annotated_user_reviews),
+            key=lambda post: post.time_created,
+            reverse=True
+        )
+
+        return render(request, 'ticket/ticket_list.html', {'all_posts': all_posts})
+
 
 
 class CreateTicketView(LoginRequiredMixin, View):
     """
     Create a new ticket.
-    
-    Extends the View class and uses LoginRequiredMixin to ensure only authenticated
-    users can access this view.
     """
 
     def get(self, request):
@@ -76,6 +88,9 @@ class CreateTicketView(LoginRequiredMixin, View):
             return render(request, 'ticket/create_ticket.html', {'form': form})
 
 class UpdateTicketView(LoginRequiredMixin, View):
+    """
+    View for updating an existing ticket.
+    """
     template_name = 'ticket/update_ticket.html'
 
     def get(self, request, pk):
@@ -92,6 +107,9 @@ class UpdateTicketView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 class DeleteTicketView(LoginRequiredMixin, View):
+    """
+    View for deleting an existing ticket.
+    """
     template_name = 'ticket/delete_ticket.html'
 
     def get(self, request, pk):

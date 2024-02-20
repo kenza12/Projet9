@@ -4,6 +4,10 @@ from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
+    """
+        Adds an email field and customizes widget placeholders.
+    """
+
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Adresse e-mail'}))
 
     class Meta:
@@ -21,6 +25,10 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
+    """
+        Customizes widget placeholders for 'username' and 'password' fields.
+    """
+
     def __init__(self, *args, **kwargs):
         super(CustomAuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'placeholder': '* Nom d\'utilisateur'})

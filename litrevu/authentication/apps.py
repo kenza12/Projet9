@@ -2,7 +2,15 @@ from django.apps import AppConfig
 
 
 class AuthenticationConfig(AppConfig):
-    name = 'authentication'
+    """
+    Configuration de l'application 'authentication'.
 
-    def ready(self):
-        import authentication.signals
+    Cette classe étend AppConfig pour configurer des aspects spécifiques de 
+    l'application 'authentication'.
+
+    Attributs:
+        name (str): Le nom de l'application, utilisé dans les paramètres 
+                    Django pour l'identifier.
+    """
+
+    name = 'authentication'
