@@ -8,14 +8,16 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        fields = '__all__'  # Inclure tous les champs
+        fields = "__all__"  # Inclure tous les champs
+
 
 # Définir un ReviewAdmin personnalisé utilisant le formulaire ci-dessus
 class ReviewAdmin(admin.ModelAdmin):
     form = ReviewForm
-    list_display = ('headline', 'rating', 'user', 'ticket', 'time_created')
-    search_fields = ('headline', 'user__username', 'ticket__title')
-    list_filter = ('rating', 'time_created')
+    list_display = ("headline", "rating", "user", "ticket", "time_created")
+    search_fields = ("headline", "user__username", "ticket__title")
+    list_filter = ("rating", "time_created")
+
 
 # Enregistrer le ReviewAdmin personnalisé
 admin.site.register(Review, ReviewAdmin)

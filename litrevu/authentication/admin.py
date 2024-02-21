@@ -6,7 +6,7 @@ class CustomUserAdmin(admin.ModelAdmin):
     """
     Configuration de l'interface d'administration pour le modèle CustomUser.
 
-    Cette classe définit la présentation et les fonctionnalités disponibles 
+    Cette classe définit la présentation et les fonctionnalités disponibles
     dans l'interface d'administration de Django pour le modèle CustomUser.
     Elle permet de personnaliser l'affichage des utilisateurs dans la liste,
     ainsi que les champs utilisables pour la recherche.
@@ -16,8 +16,8 @@ class CustomUserAdmin(admin.ModelAdmin):
         search_fields (tuple): Définit les champs sur lesquels les recherches peuvent être effectuées.
     """
 
-    list_display = ('username', 'first_name', 'last_name', 'email', 'is_staff')
-    search_fields = ('username', 'first_name', 'last_name', 'email')
+    list_display = ("username", "first_name", "last_name", "email", "is_staff")
+    search_fields = ("username", "first_name", "last_name", "email")
 
 
 # Enregistrement du modèle CustomUser avec la configuration CustomUserAdmin

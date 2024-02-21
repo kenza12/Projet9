@@ -8,10 +8,8 @@ class TicketForm(forms.ModelForm):
 
     This form allows users to create or update a ticket with fields for title, description, and image.
     """
+
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'image']
-        labels = {
-            'title': 'Titre',
-            'image': 'Image'
-        }
+        fields = ["title", "description", "image"]
+        labels = {"title": "Titre", "image": "Image"}

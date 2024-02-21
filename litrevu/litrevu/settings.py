@@ -17,19 +17,19 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Page de redirection réussie
-LOGIN_REDIRECT_URL = 'feed'
+LOGIN_REDIRECT_URL = "feed"
 
 # URL de connexion (redirection vers login si utilisateur pas connecté)
-LOGIN_URL = 'auth'
+LOGIN_URL = "auth"
 
 # Permet d'envoyer un email de bienvenu (dans la console)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-AUTH_USER_MODEL = 'authentication.CustomUser'
+AUTH_USER_MODEL = "authentication.CustomUser"
 
 # Endroit où sont enregistrés les médias (images, vidéos, ...)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'authentication.apps.AuthenticationConfig',
+    "authentication.apps.AuthenticationConfig",
     "ticket",
     "reviews",
     "user_following",
@@ -75,7 +75,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR.joinpath('templates'), # <--- ajoutez cette ligne
+            BASE_DIR.joinpath("templates"),  # <--- ajoutez cette ligne
         ],
         "APP_DIRS": True,
         "OPTIONS": {

@@ -20,5 +20,7 @@ def send_welcome_email(sender, instance, created, **kwargs):
     """
     if created:
         subject = "Bienvenue sur notre site"
-        message = "Bonjour {}, bienvenue sur notre site LITrevu. Votre compte a été créé avec succès.".format(instance.username)
-        send_mail(subject, message, 'from@example.com', [instance.email])
+        message = "Bonjour {}, bienvenue sur notre site LITrevu. Votre compte a été créé avec succès.".format(
+            instance.username
+        )
+        send_mail(subject, message, "from@example.com", [instance.email])

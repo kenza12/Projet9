@@ -30,9 +30,9 @@
             <li class="user-item">
                 <div class="user-info">
                     {% if follow.followed_user.profile_photo %}
-                        <img src="{{ follow.followed_user.profile_photo.url }}" class="user-photo" alt="Photo de {{ follow.followed_user.username }}">
+                        <img src="{{ follow.followed_user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ follow.followed_user.username }}">
                     {% else %}
-                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo par défaut">
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
                     {% endif %}
                     <span>{{ follow.followed_user.username }}</span>
                 </div>
@@ -57,9 +57,9 @@
             <li class="user-item">
                 <div class="user-info">
                     {% if follower.user.profile_photo %}
-                        <img src="{{ follower.user.profile_photo.url }}" class="user-photo" alt="Photo de {{ follower.user.username }}">
+                        <img src="{{ follower.user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ follower.user.username }}">
                     {% else %}
-                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo par défaut">
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
                     {% endif %}
                     <span>{{ follower.user.username }}</span>
                 </div>
@@ -80,9 +80,9 @@
             <li class="user-item">
                 <div class="user-info">
                     {% if user.profile_photo %}
-                        <img src="{{ user.profile_photo.url }}" class="user-photo" alt="Photo de {{ user.username }}">
+                        <img src="{{ user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ user.username }}">
                     {% else %}
-                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo par défaut">
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
                     {% endif %}
                     <span>{{ user.username }}</span>
                 </div>

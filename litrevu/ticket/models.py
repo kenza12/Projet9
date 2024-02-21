@@ -13,10 +13,11 @@ class Ticket(models.Model):
         image (ImageField): The image attached to the ticket (optional).
         time_created (DateTimeField): The date and time when the ticket was created.
     """
+
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='ticket_images/', null=True, blank=True)
+    image = models.ImageField(upload_to="ticket_images/", null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

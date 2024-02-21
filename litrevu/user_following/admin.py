@@ -11,7 +11,8 @@ class UserFollowsAdmin(admin.ModelAdmin):
         search_fields (tuple): Specifies the fields to enable search functionality in the admin interface. Allows searching by the usernames of both the user and the followed user.
     """
 
-    list_display = ('user', 'followed_user')
-    search_fields = ('user__username', 'followed_user__username')
+    list_display = ("user", "followed_user")
+    search_fields = ("user__username", "followed_user__username")
+
 
 admin.site.register(UserFollows, UserFollowsAdmin)
