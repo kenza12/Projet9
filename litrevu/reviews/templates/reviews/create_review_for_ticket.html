@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<!-- Ce template affiche la view qui permet de créer une review en réponse à un ticket -->
+<!-- Ce template affiche la vue qui permet de créer une review en réponse à un ticket -->
 <div class="response-to-ticket-container">
     <h2>Répondre à un Ticket</h2>
 
     {% if ticket %}
-    <!-- Si un ticket est fourni, il affiche les détails du ticket, y compris le titre, l'auteur, la date de création, l'image (si disponible) et la description. -->
+        <!-- Si un ticket est fourni, il affiche les détails du ticket, y compris le titre, l'auteur, la date de création, l'image (si disponible) et la description. -->
         <h3>Vous êtes en train de poster en réponse au ticket : {{ ticket.title }}</h3>
         <div class="ticket-details">
             <div class="ticket-header">
@@ -24,17 +24,14 @@
                     <p>{{ ticket.description }}</p>
                 </div>
             </div>
-        </div>        
+        </div>
 
         <div class="hr-container">
             <hr>
         </div>
-
     {% endif %}
 
     <form method="post" enctype="multipart/form-data">
-        <!-- formulaire pour soumettre sa réponse au ticket. -->
-        {% if form.ticket %}
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -44,8 +41,9 @@
                 {% endfor %}
             </div>
         {% endif %}
+
         <!-- Champ caché pour le ticket -->
-        {% if form.ticket %}
+        {% if ticket %}
             <input type="hidden" name="ticket" value="{{ ticket.id }}" id="id_ticket">
         {% endif %}
 
@@ -58,7 +56,7 @@
                         <span class="star" data-value="{{ i }}">★</span>
                     {% endfor %}
                 </div>
-                <!-- Champ caché pour Notes qui stocke la valeur de la note sélectionnée.-->
+                <!-- Champ caché pour Notes qui stocke la valeur de la note sélectionnée. -->
                 <input type="hidden" name="{{ form.rating.name }}" id="rating" value="{{ form.rating.value }}">
             </div>
             <div class="title-field">
