@@ -47,23 +47,26 @@ header .header-links {
   align-items: center;
   gap: 1px;
 }
-header .header-links span {
+header .header-links span, header .header-links form {
   display: inline-flex;
   align-items: center;
 }
-header .header-links .user-info {
-  font-style: italic;
-}
-header a {
+header .header-links span a, header .header-links span button.logout-button, header .header-links form a, header .header-links form button.logout-button {
   color: #A0522D;
   font-weight: bold;
   font-size: 21px;
   text-decoration: none;
   margin: 0 10px;
   padding: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
-header a:hover {
+header .header-links span a:hover, header .header-links span button.logout-button:hover, header .header-links form a:hover, header .header-links form button.logout-button:hover {
   text-decoration: underline;
+}
+header .header-links .user-info {
+  font-style: italic;
 }
 
 .auth-container {

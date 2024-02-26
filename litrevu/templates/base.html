@@ -18,13 +18,15 @@
             <span><a href="{% url 'follow_user' %}">Abonnements</a></span>
             {% if user.is_authenticated %}
                 <span>|</span>
-                <span><a href="{% url 'logout' %}">Se déconnecter</a></span>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Se déconnecter</button>
+                </form>
                 <span class="user-info">(Connecté(e) en tant que {{ user.username }})</span>
             {% endif %}
         </div>
     </header>
     {% block content %}{% endblock content %}
-    {% block javascript %}
-    {% endblock %}
+    {% block javascript %}{% endblock %}
 </body>
 </html>
