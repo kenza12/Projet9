@@ -2,8 +2,7 @@ from django.apps import AppConfig
 
 
 class UserFollowingConfig(AppConfig):
-    """
-    Configures the 'user_following' app.
+    """Configures the 'user_following' app.
 
     Attributes:
         default_auto_field (str): Specifies the default primary key field type for models.

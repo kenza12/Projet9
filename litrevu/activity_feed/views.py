@@ -10,18 +10,16 @@ from django.http import HttpRequest, HttpResponse
 
 
 class FeedView(LoginRequiredMixin, View):
-    """
-    Display a feed of reviews and tickets from the user and followed users.
+    """Display a feed of reviews and tickets from the user and followed users.
 
-    This view extends Django's View class and uses LoginRequiredMixin to ensure only authenticated
-    users can access the feed. It combines reviews and tickets into a single feed, ordered by creation time.
+    This view extends Django's View class and uses LoginRequiredMixin to ensure only authenticated users can access the
+    feed. It combines reviews and tickets into a single feed, ordered by creation time.
     """
 
     template_name = "activity_feed/feed.html"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        """
-        Handle GET requests and render the feed.
+        """Handle GET requests and render the feed.
 
         Args:
             request (HttpRequest): The incoming request object.
@@ -47,8 +45,7 @@ class FeedView(LoginRequiredMixin, View):
         return [i < rating for i in range(5)]
 
     def get_queryset(self, user: "CustomUser") -> list:
-        """
-        Retrieve and combine reviews and tickets viewable by the user.
+        """Retrieve and combine reviews and tickets viewable by the user.
 
         Args:
             user (CustomUser): The user for whom the feed is being generated.
@@ -84,8 +81,7 @@ class FeedView(LoginRequiredMixin, View):
         return combined_posts
 
     def get_users_viewable_reviews(self, user, followed_users, blocked_users_ids, blocking_users_ids):
-        """
-        Récupère les critiques ('reviews') visibles par l'utilisateur.
+        """Récupère les critiques ('reviews') visibles par l'utilisateur.
 
         Cette méthode permet de filtrer et de retourner les critiques qui sont visibles par l'utilisateur donné.
         Elle inclut les critiques des utilisateurs suivis par l'utilisateur (sauf ceux bloqués), ainsi que ses propres critiques.
@@ -119,8 +115,7 @@ class FeedView(LoginRequiredMixin, View):
         return combined_reviews.annotate(content_type=Value("REVIEW", CharField()))
 
     def get_users_viewable_tickets(self, user, followed_users, blocked_users_ids, blocking_users_ids):
-        """
-        Récupère les tickets visibles par l'utilisateur.
+        """Récupère les tickets visibles par l'utilisateur.
 
         Cette méthode filtre et retourne les tickets qui sont visibles par l'utilisateur donné.
         Elle inclut les tickets des utilisateurs suivis par l'utilisateur, ainsi que ses propres tickets,

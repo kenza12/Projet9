@@ -1,5 +1,4 @@
-"""
-ASGI config for litrevu project.
+"""ASGI config for litrevu project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

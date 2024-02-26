@@ -6,8 +6,7 @@ from .models import CustomUser
 
 @receiver(post_save, sender=CustomUser)
 def send_welcome_email(sender, instance, created, **kwargs):
-    """
-    Envoyer un e-mail de bienvenue à un nouvel utilisateur.
+    """Envoyer un e-mail de bienvenue à un nouvel utilisateur.
 
     Args:
         sender: La classe du modèle qui envoie le signal (CustomUser).

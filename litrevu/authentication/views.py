@@ -7,16 +7,14 @@ from django.contrib import messages
 
 
 class AuthView(View):
-    """
-    Vue pour l'authentification des utilisateurs.
+    """Vue pour l'authentification des utilisateurs.
 
-    Cette classe gère à la fois l'affichage du formulaire de connexion et le traitement
-    de la soumission des formulaires de connexion et d'inscription.
+    Cette classe gère à la fois l'affichage du formulaire de connexion et le traitement de la soumission des
+    formulaires de connexion et d'inscription.
     """
 
     def get(self, request):
-        """
-        Afficher la page d'authentification.
+        """Afficher la page d'authentification.
 
         Args:
             request: L'objet HttpRequest pour la requête entrante.
@@ -32,8 +30,7 @@ class AuthView(View):
         return render(request, "authentication/auth.html", {"login_form": login_form, "signup_form": signup_form})
 
     def post(self, request):
-        """
-        Gérer la soumission des formulaires de connexion et d'inscription.
+        """Gérer la soumission des formulaires de connexion et d'inscription.
 
         Args:
             request: L'objet HttpRequest pour la requête entrante.

@@ -3,8 +3,7 @@ from django.conf import settings
 
 
 class Ticket(models.Model):
-    """
-    Model representing a ticket posted by a user.
+    """Model representing a ticket posted by a user.
 
     Attributes:
         title (CharField): The title of the ticket.

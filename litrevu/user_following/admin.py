@@ -3,8 +3,7 @@ from .models import UserFollows
 
 
 class UserFollowsAdmin(admin.ModelAdmin):
-    """
-    Customizes the UserFollows admin interface to display and search user follow relationships.
+    """Customizes the UserFollows admin interface to display and search user follow relationships.
 
     Attributes:
         list_display (tuple): The usernames of the user and the followed user.

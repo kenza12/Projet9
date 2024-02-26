@@ -2,8 +2,7 @@ from django.apps import AppConfig
 
 
 class AuthenticationConfig(AppConfig):
-    """
-    Configuration de l'application 'authentication'.
+    """Configuration de l'application 'authentication'.
 
     Cette classe étend AppConfig pour configurer des aspects spécifiques de
     l'application 'authentication'.

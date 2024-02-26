@@ -7,8 +7,7 @@ User = get_user_model()
 
 
 class UserFollowForm(forms.Form):
-    """
-    Form for following a user.
+    """Form for following a user.
 
     Attributes:
         username (str): CharField for entering the username of the user to follow.
@@ -17,8 +16,7 @@ class UserFollowForm(forms.Form):
     username = forms.CharField(label="Nom d’utilisateur", max_length=150)
 
     def clean_username(self):
-        """
-        Validates the entered username.
+        """Validates the entered username.
 
         Returns:
             str: The validated username.

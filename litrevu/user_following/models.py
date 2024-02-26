@@ -3,8 +3,7 @@ from django.conf import settings
 
 
 class UserFollows(models.Model):
-    """
-    Model for user follows relationship.
+    """Model for user follows relationship.
 
     Attributes:
         user (ForeignKey): The user who follows another user.
@@ -25,8 +24,7 @@ class UserFollows(models.Model):
 
 
 class UserBlocks(models.Model):
-    """
-    Model for user blocking relationship.
+    """Model for user blocking relationship.
 
     Attributes:
         user (ForeignKey): The user who is blocking another user.

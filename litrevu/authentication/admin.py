@@ -3,8 +3,7 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    """
-    Configuration de l'interface d'administration pour le modèle CustomUser.
+    """Configuration de l'interface d'administration pour le modèle CustomUser.
 
     Cette classe définit la présentation et les fonctionnalités disponibles
     dans l'interface d'administration de Django pour le modèle CustomUser.

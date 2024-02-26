@@ -8,13 +8,10 @@ from django.contrib import messages
 
 
 class FollowUserView(LoginRequiredMixin, View):
-    """
-    This class handles operations for following a user.
-    """
+    """This class handles operations for following a user."""
 
     def get(self, request: "HttpRequest") -> "HttpResponse":
-        """
-        Renders the follow user page, allowing users to follow, unfollow, block, or unblock other users.
+        """Renders the follow user page, allowing users to follow, unfollow, block, or unblock other users.
 
         Args:
             request (HttpRequest): The incoming HTTP request.
@@ -49,8 +46,7 @@ class FollowUserView(LoginRequiredMixin, View):
         )
 
     def post(self, request: "HttpRequest") -> "HttpResponseRedirect":
-        """
-        Handles the POST requests for following a user.
+        """Handles the POST requests for following a user.
 
         Args:
             request (HttpRequest): The incoming HTTP request.
@@ -90,13 +86,10 @@ class FollowUserView(LoginRequiredMixin, View):
 
 
 class UnfollowUserView(LoginRequiredMixin, View):
-    """
-    Handles operations for unfollowing a user.
-    """
+    """Handles operations for unfollowing a user."""
 
     def get(self, request: "HttpRequest", user_id: int) -> "HttpResponseRedirect":
-        """
-        Handles the GET request to unfollow a user.
+        """Handles the GET request to unfollow a user.
 
         Args:
             request (HttpRequest): The incoming HTTP request.
@@ -108,8 +101,7 @@ class UnfollowUserView(LoginRequiredMixin, View):
         return self.post(request, user_id)
 
     def post(self, request: "HttpRequest", user_id: int) -> "HttpResponseRedirect":
-        """
-        Handles the POST request to unfollow a user.
+        """Handles the POST request to unfollow a user.
 
         Args:
             request (HttpRequest): The incoming HTTP request.
@@ -131,13 +123,10 @@ class BlockUserView(LoginRequiredMixin, View):
 
 
 class UnblockUserView(LoginRequiredMixin, View):
-    """
-    Handles unblocking a user.
-    """
+    """Handles unblocking a user."""
 
     def post(self, request: "HttpRequest", user_id: int) -> "HttpResponseRedirect":
-        """
-        Handles the POST request to unblock a user.
+        """Handles the POST request to unblock a user.
 
         Args:
             request (HttpRequest): The incoming HTTP request.

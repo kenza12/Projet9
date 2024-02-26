@@ -9,9 +9,7 @@ from itertools import chain
 
 
 class TicketListView(LoginRequiredMixin, View):
-    """
-    Display a list of tickets and reviews related to the user.
-    """
+    """Display a list of tickets and reviews related to the user."""
 
     def get(self, request):
         # Retrieve tickets created by the currently logged-in user, sorted by creation time.
@@ -49,13 +47,10 @@ class TicketListView(LoginRequiredMixin, View):
 
 
 class CreateTicketView(LoginRequiredMixin, View):
-    """
-    Create a new ticket.
-    """
+    """Create a new ticket."""
 
     def get(self, request):
-        """
-        Handle GET requests and present a form to create a new ticket.
+        """Handle GET requests and present a form to create a new ticket.
 
         Args:
             request (HttpRequest): The incoming request object.
@@ -67,8 +62,7 @@ class CreateTicketView(LoginRequiredMixin, View):
         return render(request, "ticket/create_ticket.html", {"form": form})
 
     def post(self, request):
-        """
-        Handle POST requests to create a new ticket.
+        """Handle POST requests to create a new ticket.
 
         Args:
             request (HttpRequest): The incoming request object with submitted form data.
@@ -88,9 +82,7 @@ class CreateTicketView(LoginRequiredMixin, View):
 
 
 class UpdateTicketView(LoginRequiredMixin, View):
-    """
-    View for updating an existing ticket.
-    """
+    """View for updating an existing ticket."""
 
     template_name = "ticket/update_ticket.html"
 
@@ -109,9 +101,7 @@ class UpdateTicketView(LoginRequiredMixin, View):
 
 
 class DeleteTicketView(LoginRequiredMixin, View):
-    """
-    View for deleting an existing ticket.
-    """
+    """View for deleting an existing ticket."""
 
     template_name = "ticket/delete_ticket.html"
 

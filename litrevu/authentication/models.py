@@ -3,8 +3,7 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    """
-    Custom user model that extends Django's AbstractUser.
+    """Custom user model that extends Django's AbstractUser.
 
     Attributes:
         profile_photo (ImageField): Profile photo of the user, stored in 'profile_photos/' directory.

@@ -3,26 +3,43 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review, Ticket
 from .forms import ReviewForm, ReviewFormWithoutTicket
 from ticket.forms import TicketForm
-from django.views.generic import ListView, View
+from django.views.generic import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
-# class ReviewListView(LoginRequiredMixin, ListView):
-#     model = Review
-#     template_name = 'reviews/review_list.html'
-#     context_object_name = 'reviews'
-
-
 class CreateReviewWithTicketView(LoginRequiredMixin, View):
+    """
+    Cette vue affiche et traite les formulaires pour créer un nouveau ticket et une critique associée.
+    """
     template_name = "reviews/create_review_with_ticket.html"
 
     def get(self, request):
+        """
+        Gère la requête GET pour afficher les formulaires de ticket et de critique.
+
+        Args:
+            request: L'objet HttpRequest.
+
+        Returns:
+            HttpResponse: Rendu de la page avec les formulaires de ticket et de critique.
+        """
+
         ticket_form = TicketForm()
         review_form = ReviewFormWithoutTicket()
         return render(request, self.template_name, {"ticket_form": ticket_form, "review_form": review_form})
 
     def post(self, request):
+        """
+        Gère la requête POST pour soumettre et enregistrer un nouveau ticket et une critique.
+
+        Args:
+            request: L'objet HttpRequest.
+
+        Returns:
+            HttpResponse: Redirige vers la liste des posts ou renvoie la page avec des erreurs.
+        """
+
         ticket_form = TicketForm(request.POST, request.FILES)
         review_form = ReviewFormWithoutTicket(request.POST)
 
@@ -38,16 +55,27 @@ class CreateReviewWithTicketView(LoginRequiredMixin, View):
 
             return redirect("ticket_list")
         else:
-            # Imprime les erreurs pour le débogage
-            print("Ticket Form Errors:", ticket_form.errors)
-            print("Review Form Errors:", review_form.errors)
             return render(request, self.template_name, {"ticket_form": ticket_form, "review_form": review_form})
 
 
 class CreateReviewForTicketView(LoginRequiredMixin, View):
+    """
+    Vue pour créer une critique pour un ticket existant.
+    """
+
     template_name = "reviews/create_review_for_ticket.html"
 
     def get(self, request, *args, **kwargs):
+        """
+        Affiche le formulaire de critique pour un ticket spécifié.
+
+        Args:
+            request: L'objet HttpRequest.
+
+        Returns:
+            HttpResponse: Rendu de la page avec le formulaire de critique.
+        """
+
         ticket_id = request.GET.get("ticket_id")
         if not ticket_id:
             return HttpResponseRedirect(reverse("feed"))
@@ -57,6 +85,16 @@ class CreateReviewForTicketView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"form": review_form, "ticket": ticket})
 
     def post(self, request, *args, **kwargs):
+        """
+        Traite la soumission du formulaire de critique.
+
+        Args:
+            request: L'objet HttpRequest.
+
+        Returns:
+            HttpResponse: Redirige vers la liste des posts ou affiche les erreurs.
+        """
+
         review_form = ReviewForm(request.POST)
 
         if review_form.is_valid():
@@ -65,7 +103,6 @@ class CreateReviewForTicketView(LoginRequiredMixin, View):
             review.save()
             return redirect("ticket_list")
         else:
-            print("FORM NOT VALID **************")
             for field, errors in review_form.errors.items():
                 for error in errors:
                     print(f"{field}: {error}")
@@ -73,15 +110,41 @@ class CreateReviewForTicketView(LoginRequiredMixin, View):
 
 
 class UpdateReviewView(LoginRequiredMixin, View):
+    """
+    Gère l'affichage et la soumission du formulaire de mise à jour d'une critique existante.
+    """
+
     template_name = "reviews/update_review.html"
 
     def get(self, request, pk):
+        """
+        Affiche le formulaire de mise à jour pour une critique spécifiée.
+
+        Args:
+            request: L'objet HttpRequest.
+            pk (int): L'identifiant de la critique à mettre à jour.
+
+        Returns:
+            HttpResponse: Rendu de la page avec le formulaire de mise à jour.
+        """
+
         review = get_object_or_404(Review, pk=pk, user=request.user)
         ticket = review.ticket  # Récupérer le ticket associé à la critique
         form = ReviewForm(instance=review)
         return render(request, self.template_name, {"form": form, "ticket": ticket})
 
     def post(self, request, pk):
+        """
+        Traite la soumission du formulaire de mise à jour de la critique.
+
+        Args:
+            request: L'objet HttpRequest.
+            pk (int): L'identifiant de la critique à mettre à jour.
+
+        Returns:
+            HttpResponse: Redirige vers la liste des posts ou affiche les erreurs.
+        """
+
         review = get_object_or_404(Review, pk=pk, user=request.user)
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -91,13 +154,39 @@ class UpdateReviewView(LoginRequiredMixin, View):
 
 
 class DeleteReviewView(LoginRequiredMixin, View):
+    """
+    Gère l'affichage de la confirmation de suppression et la suppression effective d'une critique existante.
+    """
+
     template_name = "reviews/delete_review.html"
 
     def get(self, request, pk):
+        """
+        Affiche la page de confirmation de suppression pour une critique spécifiée.
+
+        Args:
+            request: L'objet HttpRequest.
+            pk (int): L'identifiant de la critique à supprimer.
+
+        Returns:
+            HttpResponse: Rendu de la page de confirmation de suppression.
+        """
+
         review = get_object_or_404(Review, pk=pk, user=request.user)
         return render(request, self.template_name, {"review": review})
 
     def post(self, request, pk):
+        """
+        Effectue la suppression de la critique spécifiée.
+
+        Args:
+            request: L'objet HttpRequest.
+            pk (int): L'identifiant de la critique à supprimer.
+
+        Returns:
+            HttpResponse: Redirige vers la liste des posts après suppression.
+        """
+
         review = get_object_or_404(Review, pk=pk, user=request.user)
         review.delete()
         return redirect("ticket_list")
