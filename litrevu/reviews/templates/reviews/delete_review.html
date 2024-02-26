@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Ce template affiche la view qui permet de supprimer une critique -->
+<div class="delete-ticket-style">
+    <h2>Supprimer la Critique</h2>
+    <p>Êtes-vous sûr de vouloir supprimer la critique "{{ review.headline }}" ? Cette action est irréversible.</p>
+    <div class="button-container">
+        <form method="post" style="margin: 0;">
+            {% csrf_token %}
+            <button type="submit">Supprimer</button>
+        </form>
+        <a href="{% url 'ticket_list' %}">Annuler</a> 
+    </div>
+</div>
+{% endblock %}

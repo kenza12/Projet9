@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Ce template affiche la view qui permet de lister les tickets/critiques de l'user connecté de la page posts -->
+<div class="posts-title-container">
+    <h2>Vos Posts</h2>
+</div>
+
+<div class="post-container">
+    {% for post in all_posts %}
+        {% if post.type == 'ticket' %}
+            <!-- Bloc pour les tickets -->
+            <div class="post ticket-layout">
+                <div class="post-header">
+                    <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
+                </div>
+                <div class="ticket-header">
+                    <h3>Vous avez publié un Ticket</h3>
+                </div>
+                <div class="ticket-content">
+                    {% if post.image %}
+                        <div class="ticket-image">
+                            <img src="{{ post.image.url }}" alt="Image de couverture du livre ou article">
+                        </div>
+                    {% endif %}
+                    <div class="ticket-text">
+                        <h4>{{ post.title }}</h4>
+                        <p class="justified-description">{{ post.description }}</p>
+                    </div>
+                </div>
+                <div class="ticket-actions">
+                    <a href="{% url 'update_ticket' post.id %}" class="edit-button">Modifier</a>
+                    <a href="{% url 'delete_ticket' post.id %}" class="delete-button">Supprimer</a>
+                </div>
+            </div>
+
+        {% elif post.type == 'review_to_user_ticket' %}
+            <!-- Bloc pour les critiques sur les tickets de l'utilisateur -->
+            <div class="post review-layout">
+                <div class="post-header">
+                    <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
+                </div>
+                <div class="review-header">
+                    <h3>Vous avez publié une critique</h3>
+                </div>
+                <div class="review-content">
+                    <h4>{{ post.headline }} - <span class="rating">{{ post.stars_str }}</span></h4>
+                    <p class="justified-description">{{ post.body }}</p>
+                </div>
+                <hr>
+                <div class="ticket-header">
+                    <h3>Ticket - {{ post.ticket.user.username }}</h3>
+                </div>
+                <div class="ticket-display">
+                    <div class="ticket-image">
+                        {% if post.ticket.image %}
+                            <img src="{{ post.ticket.image.url }}" alt="Image de couverture du livre ou article">
+                        {% endif %}
+                    </div>
+                    <div class="ticket-details">
+                        <div class="ticket-text">
+                            <h4>{{ post.ticket.title }}</h4>
+                            <p class="justified-description">{{ post.ticket.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-actions">
+                    <a href="{% url 'update_review' post.id %}" class="edit-button">Modifier</a>
+                    <a href="{% url 'delete_review' post.id %}" class="delete-button">Supprimer</a>
+                </div>
+            </div>
+
+        {% elif post.type == 'user_review' %}
+            <!-- Bloc pour les critiques sur les tickets d'autres utilisateurs -->
+            {% if post.ticket.user != request.user %}
+                <div class="post review-layout">
+                    <div class="post-header">
+                        <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
+                    </div>
+                    <div class="review-header">
+                        <h3>Vous avez publié une critique</h3>
+                    </div>
+                    <div class="review-content">
+                        <h4>{{ post.headline }} - <span class="rating">{{ post.stars_str }}</span></h4>
+                        <p class="justified-description">{{ post.body }}</p>
+                    </div>
+                    <hr>
+                    <div class="ticket-header">
+                        <h3>Ticket - {{ post.ticket.user.username }}</h3>
+                    </div>
+                    <div class="ticket-display">
+                        <div class="ticket-image">
+                            {% if post.ticket.image %}
+                                <img src="{{ post.ticket.image.url }}" alt="Image de couverture du livre ou article">
+                            {% endif %}
+                        </div>
+                        <div class="ticket-details">
+                            <div class="ticket-text">
+                                <h4>{{ post.ticket.title }}</h4>
+                                <p class="justified-description">{{ post.ticket.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="{% url 'update_review' post.id %}" class="edit-button">Modifier</a>
+                        <a href="{% url 'delete_review' post.id %}" class="delete-button">Supprimer</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

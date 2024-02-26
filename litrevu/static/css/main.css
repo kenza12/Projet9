@@ -1,0 +1,925 @@
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("../images/background_2x.png");
+  background-size: cover;
+}
+
+header {
+  background-image: url("../images/header_2x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+header .header-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1px;
+}
+header .header-links span, header .header-links form {
+  display: inline-flex;
+  align-items: center;
+}
+header .header-links span a, header .header-links span button.logout-button, header .header-links form a, header .header-links form button.logout-button {
+  color: #A0522D;
+  font-weight: bold;
+  font-size: 21px;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+header .header-links span a:hover, header .header-links span button.logout-button:hover, header .header-links form a:hover, header .header-links form button.logout-button:hover {
+  text-decoration: underline;
+}
+header .header-links .user-info {
+  font-style: italic;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+  max-width: 1500px;
+}
+.auth-container .login-container, .auth-container .signup-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+}
+.auth-container .login-container {
+  margin-right: 40px;
+}
+.auth-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+}
+.auth-container p {
+  color: rgba(82, 9, 9, 0.479);
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-container form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.auth-container form .form-group label {
+  margin-bottom: 5px;
+}
+.auth-container form .form-group input[type=text], .auth-container form .form-group input[type=password], .auth-container form .form-group input[type=email], .auth-container form .form-group select, .auth-container form .form-group input[type=file] {
+  border: 2px solid #bd7c5d;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 15px;
+  width: 50%;
+}
+
+.errorlist, .error-message, form .errorlist, form .error-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.user-info {
+  font-size: smaller;
+  font-style: italic;
+  font-weight: bold;
+  color: #A0522D;
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.feed-container, .post {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+}
+.feed-container.feed-container, .post.feed-container {
+  max-width: 850px;
+  margin: 50px auto 20px;
+}
+.feed-container.post, .post.post {
+  background-color: #f9f9f9;
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+.feed-container.post .post-header, .post.post .post-header {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+.feed-container.post .post-header .post-time, .post.post .post-header .post-time {
+  font-size: 0.9em;
+  color: #666;
+}
+.feed-container.post h3, .post.post h3 {
+  color: rgba(59, 16, 16, 0.931);
+}
+.feed-container.post .ticket-response, .post.post .ticket-response {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.combined-post .ticket-header, .ticket-layout .ticket-header {
+  text-align: left;
+}
+.combined-post .ticket-content, .ticket-layout .ticket-content {
+  display: flex;
+  align-items: center;
+}
+.combined-post .ticket-content .ticket-image, .ticket-layout .ticket-content .ticket-image {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+.combined-post .ticket-content .ticket-image img, .ticket-layout .ticket-content .ticket-image img {
+  max-width: 250px;
+  max-height: 250px;
+  margin: 20px auto;
+  margin-left: 10px;
+  transform: rotate(-3deg);
+}
+.combined-post .ticket-content .ticket-text, .ticket-layout .ticket-content .ticket-text {
+  flex: 1;
+  text-align: left;
+  margin-left: 40px;
+}
+.combined-post hr, .ticket-layout hr {
+  border-top: 1px solid rgba(189, 123, 93, 0.6549019608);
+  margin: 20px 0;
+}
+
+.rating {
+  display: inline-block;
+  color: gold;
+  font-size: 1.5em;
+}
+
+.post .ticket-text .justified-description, .post .review-section .justified-description {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.user-following-container {
+  max-width: 700px;
+  margin: 50px auto 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+}
+.user-following-container h2, .user-following-container h3 {
+  color: #333;
+}
+.user-following-container .messages {
+  margin-bottom: 20px;
+}
+.user-following-container .messages li {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.user-following-container .follow-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.user-following-container .follow-form input[type=text] {
+  flex-grow: 0;
+  padding: 10px;
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 4px;
+  margin-right: 20px;
+  width: 250px;
+}
+.user-following-container .follow-form .btn-follow {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.user-following-container .follow-form .btn-follow:hover {
+  opacity: 0.8;
+}
+.user-following-container .btn-unfollow, .user-following-container .btn-block, .user-following-container .btn-unblock {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.user-following-container .btn-unfollow:hover, .user-following-container .btn-block:hover, .user-following-container .btn-unblock:hover {
+  opacity: 0.8;
+}
+.user-following-container .btn-follow {
+  background-color: rgba(189, 123, 93, 0.7294117647);
+  color: white;
+}
+.user-following-container .btn-unfollow {
+  background-color: rgba(159, 78, 78, 0.667);
+  color: white;
+}
+.user-following-container .btn-block {
+  background-color: rgba(195, 18, 18, 0.601);
+  color: white;
+}
+.user-following-container .btn-unblock {
+  background-color: rgba(82, 118, 83, 0.6941176471);
+  color: white;
+}
+.user-following-container .user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.user-following-container .user-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.user-following-container .user-item img, .user-following-container .user-item span {
+  margin-right: 10px;
+}
+.user-following-container .user-item .user-info {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.user-following-container .user-item .action-form {
+  margin-left: auto;
+}
+.user-following-container .followed-users,
+.user-following-container .followers,
+.user-following-container .blocked-users {
+  margin-bottom: 50px;
+}
+.user-following-container .custom-hr {
+  border-color: rgba(189, 123, 93, 0.7294117647);
+  width: 100%;
+  margin: 50px auto;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.response-to-ticket-container, .modify-review-with-ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto;
+  max-width: 900px;
+  border-radius: 15px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+  background-image: url("../images/biblio.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 45px;
+}
+.response-to-ticket-container .rating-stars, .modify-review-with-ticket-container .rating-stars {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.response-to-ticket-container .rating-stars .star, .modify-review-with-ticket-container .rating-stars .star {
+  cursor: pointer;
+  color: #bd7c5d;
+  font-size: 3em;
+  margin-right: 5px;
+}
+.response-to-ticket-container .rating-stars .star.selected, .modify-review-with-ticket-container .rating-stars .star.selected {
+  color: gold;
+}
+.response-to-ticket-container h2, .modify-review-with-ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+.response-to-ticket-container .ticket-details, .modify-review-with-ticket-container .ticket-details {
+  background-color: rgba(255, 255, 255, 0.508);
+  border: 1px solid rgba(189, 123, 93, 0.6549019608);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.response-to-ticket-container .ticket-details .ticket-header, .modify-review-with-ticket-container .ticket-details .ticket-header {
+  position: relative;
+  width: 100%;
+}
+.response-to-ticket-container .ticket-details .ticket-header p, .modify-review-with-ticket-container .ticket-details .ticket-header p {
+  color: brown;
+  font-weight: bold;
+}
+.response-to-ticket-container .ticket-details .ticket-header .ticket-date-time, .modify-review-with-ticket-container .ticket-details .ticket-header .ticket-date-time {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.8em;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description, .modify-review-with-ticket-container .ticket-details .ticket-image-and-description {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-image, .modify-review-with-ticket-container .ticket-details .ticket-image-and-description .ticket-image {
+  flex-basis: 300px;
+  flex-shrink: 0;
+  transform: rotate(-3deg);
+  margin-right: 20px;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-image img, .modify-review-with-ticket-container .ticket-details .ticket-image-and-description .ticket-image img {
+  max-width: 100%;
+  height: auto;
+}
+.response-to-ticket-container .ticket-details .ticket-image-and-description .ticket-description, .modify-review-with-ticket-container .ticket-details .ticket-image-and-description .ticket-description {
+  flex-grow: 1;
+  text-align: justify;
+}
+.response-to-ticket-container .hr-container, .modify-review-with-ticket-container .hr-container {
+  width: 80%;
+  margin: 20px auto;
+}
+.response-to-ticket-container .hr-container hr, .modify-review-with-ticket-container .hr-container hr {
+  height: 2px;
+  background-color: #bd7c5d;
+}
+.response-to-ticket-container .form-group, .modify-review-with-ticket-container .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 160%;
+  margin-left: -30%;
+}
+.response-to-ticket-container .form-group label, .modify-review-with-ticket-container .form-group label {
+  color: brown;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.response-to-ticket-container .form-group .note-field, .response-to-ticket-container .form-group .title-field, .response-to-ticket-container .form-group .comment-field, .modify-review-with-ticket-container .form-group .note-field, .modify-review-with-ticket-container .form-group .title-field, .modify-review-with-ticket-container .form-group .comment-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.response-to-ticket-container .form-group .note-field select, .response-to-ticket-container .form-group .note-field input, .response-to-ticket-container .form-group .note-field textarea, .response-to-ticket-container .form-group .title-field select, .response-to-ticket-container .form-group .title-field input, .response-to-ticket-container .form-group .title-field textarea, .response-to-ticket-container .form-group .comment-field select, .response-to-ticket-container .form-group .comment-field input, .response-to-ticket-container .form-group .comment-field textarea, .modify-review-with-ticket-container .form-group .note-field select, .modify-review-with-ticket-container .form-group .note-field input, .modify-review-with-ticket-container .form-group .note-field textarea, .modify-review-with-ticket-container .form-group .title-field select, .modify-review-with-ticket-container .form-group .title-field input, .modify-review-with-ticket-container .form-group .title-field textarea, .modify-review-with-ticket-container .form-group .comment-field select, .modify-review-with-ticket-container .form-group .comment-field input, .modify-review-with-ticket-container .form-group .comment-field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  margin: auto;
+}
+.response-to-ticket-container .form-group .comment-field .comment-textarea-container textarea, .modify-review-with-ticket-container .form-group .comment-field .comment-textarea-container textarea {
+  min-height: 400px;
+}
+.response-to-ticket-container .submit-button-container, .modify-review-with-ticket-container .submit-button-container {
+  text-align: right;
+  width: 135%;
+}
+.response-to-ticket-container .submit-button-container .submit-button, .modify-review-with-ticket-container .submit-button-container .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+.response-to-ticket-container .submit-button-container .submit-button:hover, .modify-review-with-ticket-container .submit-button-container .submit-button:hover {
+  background-color: #a46243;
+}
+
+.create-review-with-ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+  background-image: url("../images/biblio.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 35px;
+}
+.create-review-with-ticket-container .rating-stars {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.create-review-with-ticket-container .rating-stars label {
+  margin-right: 20px;
+}
+.create-review-with-ticket-container .rating-stars .star {
+  cursor: pointer;
+  color: #bd7c5d;
+  font-size: 3em;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.create-review-with-ticket-container .rating-stars .star:first-child {
+  margin-left: 20px;
+}
+.create-review-with-ticket-container .rating-stars .star.selected {
+  color: gold;
+}
+.create-review-with-ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+.create-review-with-ticket-container .section-title-ticket, .create-review-with-ticket-container .section-title-critique {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 90%;
+  margin-left: -60%;
+  margin-bottom: 20px;
+  position: relative;
+}
+.create-review-with-ticket-container .section-title-ticket::before, .create-review-with-ticket-container .section-title-critique::before {
+  content: "";
+  display: inline-block;
+  background: url("/static/images/feather.png") no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+.create-review-with-ticket-container .section-title-critique {
+  margin-bottom: 0px;
+}
+.create-review-with-ticket-container .hr-container {
+  width: 220%;
+  position: relative;
+  left: -63%;
+  padding: 10px;
+}
+.create-review-with-ticket-container .hr-container hr {
+  height: 2px;
+  background-color: #bd7c5d;
+  width: 100%;
+}
+.create-review-with-ticket-container .ticket-section, .create-review-with-ticket-container .review-section {
+  width: 160%;
+  margin-bottom: 20px;
+  margin-left: -30%;
+}
+.create-review-with-ticket-container .ticket-section .form-group label, .create-review-with-ticket-container .review-section .form-group label {
+  display: block;
+  color: brown;
+  font-weight: bold;
+  margin-bottom: 3px;
+  text-align: left;
+  padding-left: 10px;
+}
+.create-review-with-ticket-container .ticket-section .form-group select, .create-review-with-ticket-container .ticket-section .form-group input[type=text], .create-review-with-ticket-container .ticket-section .form-group input[type=number], .create-review-with-ticket-container .ticket-section .form-group input[type=file], .create-review-with-ticket-container .ticket-section .form-group textarea, .create-review-with-ticket-container .review-section .form-group select, .create-review-with-ticket-container .review-section .form-group input[type=text], .create-review-with-ticket-container .review-section .form-group input[type=number], .create-review-with-ticket-container .review-section .form-group input[type=file], .create-review-with-ticket-container .review-section .form-group textarea {
+  padding: 10px;
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
+}
+.create-review-with-ticket-container .ticket-section .form-group input[type=file], .create-review-with-ticket-container .review-section .form-group input[type=file] {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.create-review-with-ticket-container .ticket-section .form-group textarea, .create-review-with-ticket-container .review-section .form-group textarea {
+  min-height: 300px;
+}
+.create-review-with-ticket-container .submit-button-container {
+  text-align: right;
+  width: 135%;
+}
+.create-review-with-ticket-container .submit-button-container .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+.create-review-with-ticket-container .submit-button-container .submit-button:hover {
+  background-color: #a46243;
+}
+
+.modify-ticket-container .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox .current-label, .modify-ticket-container .form-group .image-field .field-image-checkbox .modify-label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: rgba(165, 42, 42, 0.601);
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox input[type=checkbox] {
+  margin-right: 1px;
+  margin-left: 10px;
+}
+.modify-ticket-container .form-group .image-field .field-image-checkbox label[for=image-clear_id] {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: rgb(150, 28, 28);
+}
+.modify-ticket-container .form-group .image-field input[type=file] {
+  margin-top: 10px;
+}
+
+.delete-ticket-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 90px auto;
+  max-width: 900px;
+  padding: 50px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.1);
+}
+.delete-ticket-style h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 30px;
+}
+.delete-ticket-style p {
+  color: rgba(82, 9, 9, 0.479);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.delete-ticket-style form {
+  text-align: center;
+}
+.delete-ticket-style .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.delete-ticket-style .button-container button, .delete-ticket-style .button-container a {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 10px;
+  display: inline-block;
+}
+.delete-ticket-style .button-container button:hover, .delete-ticket-style .button-container a:hover {
+  background-color: #a46243;
+}
+.delete-ticket-style .button-container button:hover, .delete-ticket-style .button-container a:hover {
+  background-color: rgba(165, 42, 42, 0.7);
+}
+
+.ticket-container, .modify-ticket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  max-width: 900px;
+}
+.ticket-container h2, .modify-ticket-container h2 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  margin-bottom: 30px;
+}
+.ticket-container form, .modify-ticket-container form {
+  position: relative;
+  padding: 50px;
+  border-radius: 100px;
+  width: 55%;
+  background-color: white;
+  box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
+}
+.ticket-container form::before, .modify-ticket-container form::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 7px;
+  background-image: url("../images/biblio.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 40px;
+  z-index: 0;
+}
+.ticket-container form::after, .modify-ticket-container form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border-radius: 50px;
+  z-index: -1;
+}
+.ticket-container form .form-group, .modify-ticket-container form .form-group, .ticket-container form .submit-button-container, .modify-ticket-container form .submit-button-container {
+  position: relative;
+  z-index: 1;
+}
+.ticket-container form .form-group, .modify-ticket-container form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ticket-container form .form-group label, .modify-ticket-container form .form-group label {
+  margin-bottom: 10px;
+  color: rgba(82, 9, 9, 0.479);
+  font-weight: bold;
+  display: block;
+}
+.ticket-container form .form-group input[type=text], .modify-ticket-container form .form-group input[type=text],
+.ticket-container form .form-group input[type=password],
+.modify-ticket-container form .form-group input[type=password],
+.ticket-container form .form-group input[type=email],
+.modify-ticket-container form .form-group input[type=email],
+.ticket-container form .form-group select,
+.modify-ticket-container form .form-group select,
+.ticket-container form .form-group input[type=file],
+.modify-ticket-container form .form-group input[type=file],
+.ticket-container form .form-group textarea,
+.modify-ticket-container form .form-group textarea {
+  border: 2px solid #bd7c5d;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ticket-container form .form-group textarea, .modify-ticket-container form .form-group textarea {
+  min-height: 300px;
+  width: 163%;
+}
+.ticket-container form .form-group .description-field, .modify-ticket-container form .form-group .description-field {
+  margin-bottom: 5px;
+}
+.ticket-container form .submit-button-container, .modify-ticket-container form .submit-button-container {
+  text-align: right;
+}
+.ticket-container form button, .modify-ticket-container form button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.ticket-container form button:hover, .modify-ticket-container form button:hover {
+  background-color: #a46243;
+}
+.ticket-container .errorlist, .modify-ticket-container .errorlist, .ticket-container .error-message, .modify-ticket-container .error-message {
+  color: red;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.activity-buttons a, .ticket-response a.submit-button, .submit-button {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+.activity-buttons a:hover, .ticket-response a.submit-button:hover, .submit-button:hover {
+  background-color: #a46243;
+}
+
+.activity-buttons {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ticket-response a.submit-button {
+  margin-top: 10px;
+}
+
+.posts-title-container h2 {
+  font-size: 2em;
+  color: rgba(59, 16, 16, 0.931);
+  text-align: center;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.post-container {
+  max-width: 850px;
+  margin: 20px auto;
+}
+.post-container .post {
+  background-color: #f9f9f9;
+  border: 2px solid rgba(189, 123, 93, 0.6549019608);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.post-container .post .ticket-header h3 {
+  color: rgba(59, 16, 16, 0.931);
+  margin-bottom: 10px;
+  text-align: left;
+}
+.post-container .post .review-header h3 {
+  color: rgba(59, 16, 16, 0.931);
+  margin-bottom: 10px;
+  text-align: left;
+}
+.post-container .post .ticket-display {
+  display: flex;
+  align-items: start;
+}
+.post-container .post .ticket-display .ticket-image {
+  flex: 0 0 auto;
+}
+.post-container .post .ticket-display .ticket-image img {
+  max-width: 250px;
+  max-height: 250px;
+  transform: rotate(-3deg);
+  margin-right: 20px;
+}
+.post-container .post .ticket-display .ticket-details {
+  flex: 1;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text {
+  margin-left: 40px;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text h4 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: left;
+}
+.post-container .post .ticket-display .ticket-details .ticket-text .justified-description {
+  text-align: justify;
+}
+.post-container .post .review-content {
+  margin-left: 40px;
+}
+.post-container .post .review-content h4 {
+  color: rgba(59, 16, 16, 0.931);
+  text-align: left;
+}
+.post-container .post .review-content .justified-description {
+  text-align: justify;
+}
+.post-container .post .ticket-actions, .post-container .post .review-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+.post-container .post .ticket-actions a, .post-container .post .review-actions a {
+  background-color: #bd7c5d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.post-container .post .ticket-actions a:hover, .post-container .post .review-actions a:hover {
+  background-color: #a46243;
+}
+.post-container .post hr {
+  border-top: 1px solid rgba(189, 123, 93, 0.6549019608);
+  margin: 20px 0;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="login-container">
+        <h2>Déjà inscrit ?</h2>
+        <p>Connectez-vous avec vos identifiants pour accéder à votre espace personnel</p>
+        
+        <!-- Affichage des messages d'erreur pour le formulaire de connexion -->
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'error' in message.tags and 'login' in message.extra_tags %}
+                    <p class="error-message">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {% for field in login_form %}
+                <div class="form-group">
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" name="login" class="submit-button">Se connecter</button>
+        </form>
+    </div>
+    
+    <!-- Container d'inscription -->
+    <div class="signup-container">
+        <h2>Pas encore inscrit ?</h2>
+        <p>Veuillez remplir le formulaire ci-dessous :</p>
+        
+        <!-- Affichage des messages d'erreur pour le formulaire d'inscription -->
+        {% for message in messages %}
+            {% if message.tags == 'error' and 'signup' in message.extra_tags %}
+                <p class="error-message">{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in signup_form %}
+                <div class="form-group">
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" name="signup" class="submit-button">S’inscrire</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

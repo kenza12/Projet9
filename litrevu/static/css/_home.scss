@@ -1,0 +1,132 @@
+@import 'variables';
+@import 'buttons';
+
+// Styles globaux
+body {
+    font-family: $font-family;
+    background-image: $background;
+    background-size: cover;
+}
+
+
+// Styles pour l'en-tête
+header {
+    background-image: $header-background;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    .header-links {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1px;
+    
+        span, form {
+            display: inline-flex;
+            align-items: center;
+
+            a, button.logout-button {
+                color: $link-color;
+                font-weight: bold;
+                font-size: $font-size;
+                text-decoration: none;
+                margin: 0 10px;
+                padding: 2px;
+                background: none;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    
+        .user-info {
+            font-style: italic;
+        }
+    }
+}
+
+// Conteneur pour les formulaires de connexion et d'inscription
+.auth-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+    max-width: 1500px;
+
+    // Styles communs pour les conteneurs de connexion et d'inscription
+    .login-container, .signup-container {
+        background-color: $container-bg-color; 
+        padding: 20px;
+        border-radius: 5px;
+        width: 500px;
+    }
+
+    .login-container {
+        margin-right: 40px;
+    }
+
+    h2 {
+        color : $brown-color-title;
+        text-align: center;
+    }
+
+    p {
+        color : $brown-color-p;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    // Styles pour les formulaires
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            label {
+                margin-bottom: 5px;
+            }
+
+            // Styles pour les champs de saisie
+            input[type="text"], input[type="password"], input[type="email"], select, input[type="file"] {
+                border: 2px solid $beige-color;
+                border-radius: 3px;
+                padding: 5px;
+                margin-bottom: 15px;
+                width: 50%;
+            }
+        }
+
+    }
+}
+
+// Style pour les messages d'erreur
+.errorlist, .error-message, form .errorlist, form .error-message {
+    color: $red-color-error;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+// Style pour l'information de l'utilisateur connecté
+.user-info {
+    font-size: smaller;
+    font-style: italic;
+    font-weight: bold;
+    color: $link-color;
+}

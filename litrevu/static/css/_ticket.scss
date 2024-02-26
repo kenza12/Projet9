@@ -1,0 +1,476 @@
+@import 'variables';
+@import 'buttons';
+
+
+// Créer un ticket
+.ticket-container {
+    @extend %ticket-styles;
+}
+
+// Réponse à un ticket + Modifier Réponse à un ticket
+.response-to-ticket-container, .modify-review-with-ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px auto;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+    background-image: $background-form;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding :45px;
+
+    .rating-stars {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .star {
+            cursor: pointer;
+            color: $beige-color;
+            font-size: 3em;
+            margin-right: 5px;
+
+            &.selected {
+                color: gold;
+            }
+        }
+    }
+
+    h2 {
+        color: $brown-color-title;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+
+    .ticket-details {
+        background-color: rgba(255, 255, 255, 0.508);
+        border: 1px solid $container-border-color;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    
+        .ticket-header {
+            position: relative;
+            width: 100%;
+
+            p{
+                color: brown;
+                font-weight: bold;
+            }
+    
+            .ticket-date-time {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 0.8em;
+            }
+        }
+    
+        .ticket-image-and-description {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+        
+            .ticket-image {
+                flex-basis: 300px;
+                flex-shrink: 0;
+                transform: rotate(-3deg);
+                margin-right: 20px;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        
+            .ticket-description {
+                flex-grow: 1;
+                text-align: justify;
+            }
+        }
+    }
+
+    .hr-container {
+        width: 80%;
+        margin: 20px auto;
+        hr { height: 2px; background-color: $beige-color; }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 160%;
+        margin-left: -30%;
+    
+        label {
+            color: brown;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    
+        .note-field, .title-field, .comment-field {
+            width: 100%;
+            margin-bottom: 10px;
+    
+            select, input, textarea {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid $beige-color;
+                border-radius: 5px;
+                margin: auto;
+            }
+        }
+    
+        .comment-field .comment-textarea-container textarea {
+            min-height: 400px;
+        }
+    }
+    
+    .submit-button-container {
+        text-align: right;
+        width: 135%;
+        .submit-button {
+            @include button-styles;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+    }
+}
+
+
+
+// Créer une critique avec un ticket
+.create-review-with-ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px auto;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.389);
+    background-image: $background-form;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 35px;
+
+    .rating-stars {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    
+        label {
+            margin-right: 20px;
+        }
+    
+        .star {
+            cursor: pointer;
+            color: $beige-color; 
+            font-size: 3em; 
+            margin-right: 10px;
+            margin-bottom: 10px;
+    
+            &:first-child {
+                margin-left: 20px;
+            }
+    
+            &.selected {
+                color: gold;
+            }
+        }
+    }
+
+    h2 {
+        color: $brown-color-title;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2em;
+    }
+
+    .section-title-ticket, .section-title-critique {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        width: 90%;
+        margin-left: -60%;
+        margin-bottom: 20px;
+        position: relative;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            background: url('/static/images/feather.png') no-repeat;
+            background-size: contain;
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+    }
+
+    .section-title-critique {
+        margin-bottom: 0px;
+    }
+
+    .hr-container {
+        width: 220%;
+        position: relative;
+        left: -63%;
+        padding: 10px;
+        hr {
+            height: 2px;
+            background-color: $beige-color;
+            width: 100%;
+        }
+    }
+    .ticket-section, .review-section {
+        width: 160%;
+        margin-bottom: 20px;
+        margin-left: -30%;
+
+        .form-group {
+            label {
+                display: block; 
+                color: brown;
+                font-weight: bold;
+                margin-bottom: 3px;
+                text-align: left;
+                padding-left: 10px; 
+            }
+
+            select, input[type="text"], input[type="number"], input[type="file"], textarea {
+                padding: 10px;
+                border: 2px solid $beige-color;
+                border-radius: 5px;
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            input[type="file"] {
+                cursor: pointer;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            textarea {
+                min-height: 300px;
+            }
+        }
+
+    }
+
+    .submit-button-container {
+        text-align: right;
+        width: 135%;
+        .submit-button {
+            @include button-styles;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+    }
+}
+
+// Modifier un Ticket
+.modify-ticket-container {
+    @extend %ticket-styles;
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .image-field {
+            .field-image-checkbox {
+                display: flex;
+                align-items: center;
+                margin-left: 15px;
+
+                .current-label, .modify-label {
+                    font-weight: bold;
+                    font-size: 0.9em;
+                    color: rgba(165, 42, 42, 0.601);
+                }
+
+                input[type="checkbox"] {
+                    margin-right: 1px;
+                    margin-left: 10px;
+                }
+
+                label[for="image-clear_id"] {
+                    // Styliser le label "Effacer"
+                    display: inline-block;
+                    margin-bottom: 20px;
+                    font-size: 0.9em;
+                    color: rgb(150, 28, 28);
+                }
+            }
+
+            input[type="file"] {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+// Supprimer un Ticket
+.delete-ticket-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 90px auto;
+    max-width: 900px;
+    padding: 50px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        color: $brown-color-title;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    p {
+        color: $brown-color-p;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        button, a {
+            @include button-styles;
+            margin: 10px;
+            display: inline-block;
+
+            &:hover {
+                background-color: rgba(165, 42, 42, 0.7);
+            }
+        }
+    }
+}
+
+// Style pour les tickets
+%ticket-styles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    max-width: 900px;
+
+    h2 {
+        color: $brown-color-title;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        position: relative;
+        padding: 50px;
+        border-radius: 100px;
+        width: 55%;
+        background-color: white;
+        box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
+
+        // Image de fond en arrière-plan
+        &::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 7px;
+            background-image: $background-form;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 40px;
+            z-index: 0;
+        }
+
+        // Fond blanc pour le formulaire sous l'image
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        .form-group, .submit-button-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            label {
+                margin-bottom: 10px;
+                color: $brown-color-p;
+                font-weight: bold;
+                display: block;
+            }
+            
+            input[type="text"], 
+            input[type="password"], 
+            input[type="email"], 
+            select, 
+            input[type="file"], 
+            textarea {
+                border: 2px solid $beige-color;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 40px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            textarea {
+                min-height: 300px;
+                width: 163%;
+            }
+            
+            .description-field {
+                margin-bottom: 5px;
+            }
+        }
+
+        .submit-button-container {
+            text-align: right;
+        }
+
+        button {
+            @include button-styles;
+        }
+    }
+
+    .errorlist, .error-message {
+        color: $red-color-error;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+}

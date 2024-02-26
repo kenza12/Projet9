@@ -1,0 +1,98 @@
+@import 'variables';
+@import 'buttons';
+
+// Styles pour le conteneur principal du flux d'activité et chaque post individuel
+.feed-container, .post {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+
+  // Style spécifique au .feed-container
+  &.feed-container {
+    max-width: 850px;
+    margin: 50px auto 20px;
+  }
+
+  // Styles spécifique pour chaque post
+  &.post {
+    background-color: $container-bg-color;
+    border: 2px solid $container-border-color;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px $shadow-color;
+    font-family: $font-family;
+
+    // Style pour l'en-tête de chaque post (date et heure)
+    .post-header {
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 10px;
+      font-size: 0.9em;
+      color: $date-color;
+
+      // Style pour l'affichage de la date et de l'heure
+      .post-time {
+        font-size: 0.9em;
+        color: $date-color;
+      }
+    }
+
+    h3 {
+      color: $brown-color-title;
+    }
+
+    // Styles spécifiques pour le bouton de réponse au ticket
+    .ticket-response {
+      text-align: right;
+      margin-top: 20px;
+    }
+  }
+}
+
+// Styles spécifiques pour les tickets et les posts combinés
+.combined-post, .ticket-layout {
+  .ticket-header {
+    text-align: left;
+  }
+
+  .ticket-content {
+    display: flex;
+    align-items: center;
+
+    .ticket-image {
+      flex: 0 0 auto;
+      margin-right: 20px;
+
+      img {
+        max-width: 250px;
+        max-height: 250px;
+        margin: 20px auto;
+        margin-left: 10px;
+        transform: rotate(-3deg);
+      }
+    }
+
+    .ticket-text {
+      flex: 1;
+      text-align: left;
+      margin-left: 40px;
+    }
+  }
+
+  hr {
+    border-top: 1px solid $container-border-color;
+    margin: 20px 0;
+  }
+}
+
+// Style pour les étoiles de notation
+.rating {
+  display: inline-block;
+  color: $star-color;
+  font-size: 1.5em;
+}
+
+.post .ticket-text .justified-description, .post .review-section .justified-description {
+  text-align: justify;
+  text-justify: inter-word;
+}

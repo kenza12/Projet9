@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>LITrevu</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-links">
+            <span><a href="{% url 'feed' %}">Flux</a></span>
+            <span>|</span>
+            <span><a href="{% url 'ticket_list' %}">Posts</a></span>
+            <span>|</span>
+            <span><a href="{% url 'follow_user' %}">Abonnements</a></span>
+            {% if user.is_authenticated %}
+                <span>|</span>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Se déconnecter</button>
+                </form>
+                <span class="user-info">(Connecté(e) en tant que {{ user.username }})</span>
+            {% endif %}
+        </div>
+    </header>
+    {% block content %}{% endblock content %}
+    {% block javascript %}{% endblock %}
+</body>
+</html>

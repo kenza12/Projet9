@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Ce template affiche la view qui permet de modifier un ticket -->
+{% block content %}
+<div class="ticket-container modify-ticket-container">
+    <h2>Modifier le Ticket</h2>
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% if field.name == 'image' %}
+                    <div class="image-field">
+                        {% if field.value %}
+                            <div class="field-image-checkbox">
+                                <div class="field-image">
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    </div>
+                {% elif field.name == 'description' %}
+                    <div class="description-field">
+                        {{ field }}
+                    </div>
+                {% else %}
+                    {{ field }}
+                {% endif %}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="submit-button-container">
+            <button type="submit">Enregistrer les modifications</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/forms.js' %}"></script>
+{% endblock %}

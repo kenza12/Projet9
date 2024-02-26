@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!-- Ce template permet à l'utilisateur de suivre, d'afficher ses abonnés et les utilisateurs qu'il a bloqués, et de gérer ces interactions. -->
+{% block content %}
+<div class="user-following-container">
+    <h2>Suivre un Utilisateur</h2>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="follow-form">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+        <button type="submit" class="btn-follow">Suivre</button>
+    </form>
+
+    <hr class="custom-hr">
+    
+    <section class="followed-users">
+        <h3>Utilisateurs Suivis</h3>
+        <ul>
+            {% for follow in followed_users %}
+            <li class="user-item">
+                <div class="user-info">
+                    {% if follow.followed_user.profile_photo %}
+                        <img src="{{ follow.followed_user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ follow.followed_user.username }}">
+                    {% else %}
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
+                    {% endif %}
+                    <span>{{ follow.followed_user.username }}</span>
+                </div>
+                <form action="{% url 'unfollow' follow.followed_user.id %}" method="post" class="action-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-unfollow">Désabonner</button>
+                </form>
+                <form action="{% url 'block_user' follow.followed_user.id %}" method="post" class="action-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-block">Bloquer</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+
+    <section class="followers">
+        <h3>Vos Abonnés</h3>
+        <ul>
+            {% for follower in followers %}
+            <li class="user-item">
+                <div class="user-info">
+                    {% if follower.user.profile_photo %}
+                        <img src="{{ follower.user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ follower.user.username }}">
+                    {% else %}
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
+                    {% endif %}
+                    <span>{{ follower.user.username }}</span>
+                </div>
+                <form action="{% url 'block_user' follower.user.id %}" method="post" class="action-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-block">Bloquer</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+
+    <section class="blocked-users">
+        <h3>Vos Utilisateurs Bloqués</h3>
+        <ul>
+            {% for user in blocked_users %}
+            <li class="user-item">
+                <div class="user-info">
+                    {% if user.profile_photo %}
+                        <img src="{{ user.profile_photo.url }}" class="user-photo" alt="Photo de profil de {{ user.username }}">
+                    {% else %}
+                        <img src="{% static 'images/avatar_bonhomme.jpg' %}" class="user-photo" alt="Photo bonhomme par défaut de l'utilisateur">
+                    {% endif %}
+                    <span>{{ user.username }}</span>
+                </div>
+                {% if user.id in user_blocked_ids %}
+                <form action="{% url 'unblock_user' user.id %}" method="post" class="action-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-unblock">Débloquer</button>
+                </form>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+</div>
+{% endblock content %}
