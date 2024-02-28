@@ -15,8 +15,8 @@ class TicketListView(LoginRequiredMixin, View):
         # Retrieve tickets created by the currently logged-in user, sorted by creation time.
         tickets = Ticket.objects.filter(user=request.user).order_by("-time_created")
 
-        # Retrieve reviews associated with tickets belonging to the currently logged-in user, sorted by creation time.
-        reviews_to_user_tickets = Review.objects.filter(ticket__user=request.user).order_by("-time_created")
+        # Retrieve reviews left by the currently logged-in user on their own tickets, sorted by creation time.
+        reviews_to_user_tickets = Review.objects.filter(ticket__user=request.user, user=request.user).order_by("-time_created")
 
         # Retrieve reviews created by the currently logged-in user but exclude those left on their own tickets, sorted by creation time.
         user_reviews = (

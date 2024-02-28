@@ -36,7 +36,7 @@
             </div>
 
         {% elif post.type == 'review_to_user_ticket' %}
-            <!-- Bloc pour les critiques sur les tickets de l'utilisateur -->
+            <!-- Bloc pour les critiques sur les tickets de l'utilisateur connecté -->
             <div class="post review-layout">
                 <div class="post-header">
                     <span class="post-time">{{ post.time_created|date:"d M Y, H:i" }}</span>
